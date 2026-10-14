@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Проекты ArtSign</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@600;700&family=Onest:wght@400;500;600&display=swap">
+<style>
+:root{
+  --bg:#eef0ec;--surface:#fff;--sunk:#e3e6e0;--ink:#1b211d;--muted:#5f6862;--line:#d4d9d2;--accent:#2f47c9;
+  --blue:#2f47c9;--blue-s:#e3e7fb;--red:#c23a2e;--red-s:#fbe4e1;--amber:#9a6208;--amber-s:#fbefd8;--green:#0d7655;--green-s:#dcf0e7;--grey:#5b6470;--grey-s:#eceef0;
+  --f-d:"Geologica","Segoe UI",system-ui,sans-serif;--f-b:"Onest","Segoe UI",system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root{
+  --bg:#121614;--surface:#1b201d;--sunk:#252c28;--ink:#e7ece8;--muted:#9ba59e;--line:#313a35;--accent:#8ea0ff;
+  --blue:#8ea0ff;--blue-s:#232a4d;--red:#ff8a7d;--red-s:#3d1f1c;--amber:#f0b956;--amber-s:#3a2d14;--green:#4fd0a2;--green-s:#173a2e;--grey:#b8c0c8;--grey-s:#262c30;color-scheme:dark}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--f-b)}
+.wrap{max-width:1100px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.top{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;padding-block:14px 0}
+h1{font:700 20px var(--f-d);margin:0 auto 0 0}
+.me{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted)}
+input,select,textarea,button{font:inherit;color:inherit}
+.inp{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:9px 12px;width:100%;min-width:0}
+select.inp{width:auto}
+.tabs{display:flex;gap:6px;margin-top:10px}
+.tab{flex:1 1 0;max-width:260px;border:0;background:none;padding:10px 6px 12px;font:600 16px var(--f-d);color:var(--muted);cursor:pointer;border-bottom:3px solid transparent}
+.tab[aria-selected="true"]{color:var(--ink);border-color:var(--accent)}
+.tab small{font:500 13px var(--f-b);color:var(--muted);margin-left:6px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+main{padding-block:16px 48px;display:grid;gap:14px}
+.bar{display:flex;gap:10px;flex-wrap:wrap}
+.bar .inp{flex:1 1 240px}
+.btn{border:1px solid transparent;border-radius:10px;padding:9px 14px;font-weight:600;cursor:pointer;background:var(--accent);color:var(--surface);white-space:nowrap}
+.btn.ghost{background:var(--surface);border-color:var(--line);color:var(--ink);font-weight:500}
+.btn.danger{background:var(--red);color:var(--surface)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.pills{display:flex;gap:6px;flex-wrap:wrap}
+.pill{border:1px solid var(--line);background:var(--surface);border-radius:20px;padding:6px 12px;font-size:13.5px;cursor:pointer;display:flex;gap:6px;align-items:center}
+.pill b{font-weight:600}
+.pill[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
+.dot{width:8px;height:8px;border-radius:50%;flex:none}
+.list{display:grid;gap:8px}
+.row{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;cursor:pointer;text-align:left;width:100%}
+.row:hover{border-color:var(--muted)}
+.row .co{font-weight:600;font-size:15.5px;min-width:0;overflow-wrap:anywhere}
+.row .sub{grid-column:1;color:var(--muted);font-size:13.5px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .side{grid-row:1/span 2;grid-column:2;display:grid;justify-items:end;gap:4px;align-content:start}
+.row .small{font-size:12.5px;color:var(--muted);white-space:nowrap}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;padding:4px 10px;border-radius:20px;white-space:nowrap}
+.t-blue{background:var(--blue-s);color:var(--blue)}.t-red{background:var(--red-s);color:var(--red)}.t-amber{background:var(--amber-s);color:var(--amber)}
+.t-green{background:var(--green-s);color:var(--green)}.t-grey{background:var(--grey-s);color:var(--grey)}
+.empty{color:var(--muted);padding:20px 4px;text-align:center}
+.hint{font-size:13px;color:var(--muted);margin:0}
+/* карточка */
+.scrim{position:fixed;inset:0;background:rgb(0 0 0 / .35);z-index:20}
+.card{position:fixed;z-index:21;inset:auto 0 0 0;max-height:92vh;overflow-y:auto;background:var(--surface);border-radius:16px 16px 0 0;
+  padding:20px max(18px,env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px));display:grid;gap:18px;align-content:start}
+@media (min-width:760px){.card{inset:0 0 0 auto;width:480px;max-height:none;border-radius:0;border-left:1px solid var(--line)}}
+.c-head{display:flex;gap:12px;justify-content:space-between;align-items:start}
+.c-head h2{margin:0;font:700 22px/1.2 var(--f-d)}
+.c-head .who{color:var(--muted);margin-top:2px}
+.x{flex:none;width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:none;font-size:20px;cursor:pointer}
+.sec{display:grid;gap:8px}
+.sec>h3{margin:0;font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.desc{margin:0;white-space:pre-wrap}
+.site a{color:var(--accent);font-weight:500;overflow-wrap:anywhere}
+.choices{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:6px}
+.choice{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 10px;cursor:pointer;text-align:left;font-size:14px;display:flex;gap:8px;align-items:center}
+.choice[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink);font-weight:600}
+.choice:disabled{cursor:not-allowed;opacity:.55}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.two label,.field{display:grid;gap:4px;font-size:13px;color:var(--muted)}
+.lock{font-size:12.5px;color:var(--muted)}
+.notes{display:grid;gap:10px}
+.note{border-left:3px solid var(--line);padding-left:10px}
+.note .when{font-size:12px;color:var(--muted)}
+textarea.inp{min-height:70px;resize:vertical}
+.admin{border-top:1px solid var(--line);padding-top:14px;display:flex;gap:8px;flex-wrap:wrap}
+.confirm{background:var(--red-s);border-radius:10px;padding:12px;display:grid;gap:8px;color:var(--ink)}
+@media (max-width:480px){.two{grid-template-columns:1fr}.row{grid-template-columns:minmax(0,1fr)}.row .side{grid-row:auto;grid-column:1;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center}.row .side>span:first-child{display:flex;flex-wrap:wrap;gap:4px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="top">
+      <h1>Проекты ArtSign</h1>
+      <label class="me" for="me">Вы:
+        <select id="me" class="inp">
+          <option>Дэн</option><option>Султан</option><option>Адина</option><option>Помощница</option>
+        </select>
+      </label>
+    </div>
+    <div class="tabs" role="tablist">
+      <button class="tab" role="tab" data-t="dev">Разработка<small id="n-dev"></small></button>
+      <button class="tab" role="tab" data-t="ads">Реклама<small id="n-ads"></small></button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <p class="hint" id="lead"></p>
+  <div class="bar">
+    <input id="q" class="inp" type="search" placeholder="Найти компанию или клиента" aria-label="Поиск">
+    <button id="add" class="btn" type="button">+ Новый проект</button>
+  </div>
+  <div class="pills" id="pills"></div>
+  <div class="list" id="list"></div>
+  <p class="hint">Пробная версия: изменения видны только в этом браузере. <button id="reset" class="btn ghost" type="button" style="padding:4px 10px;font-size:13px">Вернуть исходные данные</button></p>
+</main>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="card" id="card" hidden aria-label="Карточка проекта"></aside>
+
+<script>
+const DEV=[
+  {k:1,t:'Сбор информации',c:'grey'},{k:2,t:'Лэндинг',c:'blue'},{k:3,t:'Правки',c:'amber'},
+  {k:4,t:'Хостинг',c:'blue'},{k:5,t:'Этап 2 (реклама)',c:'blue'},{k:6,t:'Передано в рекламу',c:'green'},{k:0,t:'Ушёл',c:'grey'}
+];
+const ADS=[
+  {k:'fire',t:'Нужно внимание',c:'red'},{k:'new',t:'Новый',c:'blue'},{k:'wait',t:'Ждём клиента',c:'amber'},
+  {k:'ok',t:'Всё хорошо',c:'green'},{k:'pause',t:'Пауза',c:'grey'}
+];
+const ADMINS=['Дэн','Султан'];
+const s=(u)=>u?'https://'+u:'';
+/* id, компания, клиент, начало, этап разработки, описание, сайт, заметка разработки */
+const ROWS=[
+[1,'Batys Finance','Дмитрий','21.08.2026',6,'Финансовый консультант: ипотека, рефинансирование, финансирование бизнеса (Атырау)','batysfinance.kz'],
+[2,'The View','Чингиз','19.08.2026',6,'Ресейл люксовой одежды и аксессуаров (Алматы)','theview.kz'],
+[3,'Без названия','Ерасыл','19.08.2026',2,'В реестре есть Ақсауле-Мед с клиентом Ерасыл, проверить'],
+[4,'Trio Clinic','Назим','24.08.2026',6,'Ортопедия, реабилитация, кинезиотерапия (Алматы)','trioclinic.kz'],
+[5,'Без названия','Тимур','24.08.2026',1,''],
+[6,'BigPower','Дархан','24.08.2026',6,'Дизельные генераторы и строительное оборудование (Астана, Алматы)','bigpowerkaz.kz'],
+[7,'Ты Художник','Дина','24.08.2026',6,'Арт-школа: рисунок, живопись, роспись стен (Алматы)','tyhudozhnik.merten-academy.kz'],
+[8,'BestCom','Ерлан','24.08.2026',6,'Охранные системы, умные замки, Bitrix24 (Атырау)','security.bestcom.kz'],
+[9,'Iceberg Dry Cleaning','Алмаз','25.08.2026',6,'Химчистка мягкой мебели с выездом (Астана)','drycleaningiceberg.kz'],
+[10,'Qadam','Шалкар','26.08.2026',6,'Купля-продажа готовых ТОО','qadamqazaq.kz'],
+[11,'dual.kz','Айгуль Султангалиевна','25.08.2026',6,'Туроператор: туры и экскурсии по Казахстану (Астана)','astanadual.kz'],
+[12,'Belisarov','Талгат','25.08.2026',6,'Юридические услуги: судебные споры, взыскание долгов','belisarov.kz'],
+[13,'Казполимер','Виталий','26.08.2026',6,'Изделия из полиуретана, футеровка (Актобе)','kazpolimer-ltd.kz'],
+[14,'Everest','Алихан','27.08.2026',6,'Смесители оптом (Алматы)','everestsanitary.kz'],
+[15,'Arm-Garant','Станислав','27.08.2026',0,'Трубопроводная арматура','arm-garant.kz'],
+[16,'TOO Nisada','Таир','28.08.2026',6,'Быстровозводимые здания, ангары (Алматы)'],
+[17,'BestShine','Андрей','28.08.2026',6,'Детейлинг: оклейка авто плёнкой'],
+[18,'AdvokatKurzhikaev','Руслан','28.08.2026',6,'Адвокат: уголовная защита'],
+[19,'Reflex Women’s Clinic','Айнура','29.08.2026',6,'Лечение боли, позвоночника и суставов (Алматы)'],
+[20,'Limar Avto','Марат','29.08.2026',6,'Автозапчасти Lada, Chevrolet, Renault (Уральск)'],
+[21,'Crane Engineering','Нурсултан','31.08.2026',6,'Грузоподъёмное оборудование, краны'],
+[22,'Astana Masters','Данияр','31.08.2026',6,'Инженерная сантехника и отопление (Астана)'],
+[23,'TOO Shanyraq','Ербол','31.08.2026',6,'Фасадные работы под ключ (Астана)'],
+[24,'AIG','Серик','31.08.2026',5,'Электрооборудование, строительство, монтаж (Уральск)'],
+[25,'Autologix Group','Диас, Гульназ','31.08.2026',6,'Международная логистика и байер в ОАЭ','autologix-group.kz'],
+[26,'Адвокат Ерлан Т','Ерлан','31.08.2026',4,'Крупные споры от 10 млн тенге (Астана)','','Сидит на SEO'],
+[27,'Saiser','Саиджан','01.09.2026',5,'Инженерные системы зданий (Алматы)','','На стопе до следующего месяца'],
+[28,'Tautas Beton','Айбек','01.09.2026',6,'Бетонный завод (Алматы)','tautas-beton.kz'],
+[29,'SkySpace','Талгат','01.09.2026',6,'Натяжные потолки и свет (Астана)'],
+[30,'VisAir','Сабина','02.09.2026',6,'Визовый центр (Астана)','visair.kz'],
+[31,'TradeChem','Светлана','03.09.2026',6,'Защитные покрытия и огнезащита (Астана)'],
+[32,'Без названия','Айгуль','03.09.2026',1,''],
+[33,'Paluba','Станислав','03.09.2026',6,'Системы безопасности и слаботочка (Астана)'],
+[34,'Sarra Coach','Сарра','03.09.2026',6,'Коуч: мышление и рост дохода'],
+[35,'BJ Consulting','Бек','04.09.2026',6,'Сертификация ЕАЭС (Алматы)','bjc.kz'],
+[36,'Без названия','Айгерим','05.09.2026',1,'','','Предоплата'],
+[37,'Ocenca_Voc','Олжас','05.09.2026',6,'Оценка имущества (Алматы)'],
+[38,'CoolКлимат','Алексей','07.09.2026',6,'Кондиционеры: продажа и монтаж (Астана)'],
+[39,'SnabStroy','','08.09.2026',6,'Промышленные ворота и двери'],
+[40,'ProfMaster','Бауыржан','08.09.2026',6,'Ремонт стиральных машин'],
+[41,'StrongSteel','Ален','09.09.2026',6,'Металлопрокат (Шымкент, доставка по РК)'],
+[42,'ЭкоПласт','Александр','09.09.2026',6,'ПНД трубы и комплектующие (Алматы)'],
+[43,'Электросервис','Аманбек','10.09.2026',6,'Электромонтаж (Астана, Алматы)'],
+[44,'Avermont Legal','Рауан','11.09.2026',6,'Бизнес-юрфирма (Алматы)'],
+[45,'AsylZhaluzi','Жанузак','12.09.2026',6,'Жалюзи и рулонные шторы (Алматы)'],
+[46,'SollMarine','Заир','14.09.2026',6,'Ресторан морской кухни (Актау)','sollmarine.kz'],
+[47,'Оценка Бизнеса','Абай','15.09.2026',6,'Оценка бизнеса и активов для юрлиц','ocenka-biznesa.kz'],
+[48,'Remont Holod','Евгений','15.09.2026',6,'Ремонт холодильников (Астана)','holodilnikremont.kz'],
+[49,'Lineo','Леонид','18.09.2026',6,'Корпусная мебель на заказ (Астана)','lineo.kz'],
+[50,'SmartGroupSolutions','Светлана','18.09.2026',6,'Кейтеринг и мероприятия (Алматы)','smart-solutions.kz'],
+[51,'Феникс','Медет','18.09.2026',3,'Учебный центр: охрана труда, промбезопасность','','Большой двухнедельный проект'],
+[52,'WXT-trade','Азим','18.09.2026',6,'Изделия из нержавеющей стали'],
+[53,'Deekeyz','Мадияр','21.09.2026',6,'Кузовной ремонт и детейлинг (Алматы)','deekeyz.kz'],
+[54,'Эстетик','Марианна','24.09.2026',6,'Подолог (Актобе)','mariannapro.kz'],
+[55,'BestVorotaGroup','Нурлыбек','25.09.2026',6,'Ворота, навесы, ограждения','bestvorotagroup.kz'],
+[56,'Нумерология','Эльвира','26.09.2026',6,'Таро и нумерология']
+];
+/* Реклама: ведёт, статус, запуск, оплата до, заметка из трекера контекстолога */
+const AD={
+ 1:['Дэн','ok'],7:['Дэн','ok','06.09.2026','03.10.2026'],17:['Дэн','ok','08.09.2026'],19:['Дэн','ok'],
+ 25:['Дэн','fire','','13.10.2026','Остаток оплаты не внесён'],31:['Дэн','ok','08.09.2026','','Есть и в трекере Адины (Trade Cherm): решить, кто ведёт'],34:['Дэн','ok'],
+ 4:['Адина','fire','','','2 недели не может пройти подтверждение в Google. До этого говорил, что заявки целевые'],
+ 16:['Адина','wait','','','Должен продлить. Сделала оптимизацию через месяц и ключевые слова'],
+ 18:['Адина','new'],22:['Адина','ok','04.09.2026','','Убрала из минус-слов газовый ремонт'],
+ 23:['Адина','wait','','','Пока ещё не оплатил'],28:['Адина','ok','','','Всё хорошо, заявок много'],
+ 29:['Адина','wait','','','Доволен результатом, ищет деньги на продление'],30:['Адина','ok','23.09.2026','','Заявки доходят, всё хорошо'],
+ 33:['Адина','pause','','','18.09 реклама создана, но попросили приостановить, пока не подключат Битрикс'],
+ 35:['Адина','ok','','09.10.2026','Заявки идут'],37:['Адина','pause','','','Хочет попробовать вести рекламу сам'],
+ 38:['Адина','fire','','12.10.2026','Есть долг по оплате. В последнюю неделю 19 заявок, продажи пошли'],
+ 40:['Адина','fire','22.09.2026','','Пропал, трубку не берёт'],41:['Адина','ok','','12.10.2026','Заявки идут, есть продажи'],
+ 42:['Адина','wait','14.09.2026','','Заявки есть. Должны продлиться'],44:['Адина','ok','','','С 15 дня включила вторую фазу и подняла бюджет до 20 долларов'],
+ 45:['Адина','ok','','13.10.2026','Доволен результатом, заявок много'],46:['Адина','ok'],47:['Адина','ok','','','Заявки есть'],
+ 52:['Адина','ok','02.10.2026','','Было 10 заявок за неделю, будем поднимать бюджет']
+};
+const ONLY_ADS=[
+ [101,'Broks','Искандер','Адина','ok','12.09.2026','12.10.2026','Всё доходит, просит поднимать бюджет без роста цены заявки'],
+ [102,'metallocherepica','Вениамин','Адина','ok','20.07.2026','','Всё хорошо, заявки есть'],
+ [103,'Ляззат Психолог','Ляззат','Адина','ok','07.10.2026','','Первые конверсии пошли','Психолог (Астана, онлайн)']
+];
+
+const KEY='artsign-crm-2';
+const DAY=864e5, today=new Date(); today.setHours(0,0,0,0);
+const parse=x=>{const m=/(\d{2})\.(\d{2})\.(\d{4})/.exec(x||'');return m?new Date(+m[3],m[2]-1,+m[1]):null};
+const fmt=d=>String(d.getDate()).padStart(2,'0')+'.'+String(d.getMonth()+1).padStart(2,'0')+'.'+d.getFullYear();
+const iso=x=>{const d=parse(x);return d?d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0'):''};
+const deiso=v=>v?v.split('-').reverse().join('.'):'';
+const days=x=>{const d=parse(x);return d?Math.round((today-d)/DAY):null};
+const esc=x=>String(x??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const now=()=>fmt(new Date());
+
+function seed(){
+  let n=200;
+  const items=ROWS.map(([id,co,client,start,stage,desc,site,dnote])=>{
+    const it={id,co,client,start,stage,desc:desc||'',site:s(site),next:'',nextDate:'',notes:[],ads:null};
+    if(dnote) it.notes.push({who:'Дэн',when:'',text:dnote});
+    if(stage===6){
+      const a=AD[id]||['Адина','new'];
+      it.ads={owner:a[0],status:a[1],launch:a[2]||'',payDue:a[3]||''};
+      if(a[4]) it.notes.push({who:a[0],when:'',text:a[4]});
+    }
+    return it;
+  });
+  ONLY_ADS.forEach(([id,co,client,owner,status,launch,payDue,note,desc])=>items.push(
+    {id,co,client,start:'',stage:null,desc:desc||'',site:'',next:'',nextDate:'',notes:[{who:owner,when:'',text:note}],ads:{owner,status,launch,payDue}}));
+  return {items,seq:n};
+}
+let S; try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+if(!S||!S.items) S=seed();
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+
+let tab='ads', filter='all', openId=null, editing=false, confirmDel=false;
+try{tab=localStorage.getItem(KEY+'-tab')||'ads'}catch(e){}
+const me=()=>document.getElementById('me').value;
+const isAdmin=()=>ADMINS.includes(me());
+const canAds=()=>isAdmin()||me()==='Адина';
+const q=()=>document.getElementById('q').value.trim().toLowerCase();
+const match=i=>!q()||(i.co+' '+i.client+' '+i.desc).toLowerCase().includes(q());
+const devOf=k=>DEV.find(d=>d.k===k);
+const adOf=k=>ADS.find(d=>d.k===k);
+const tag=(t,c)=>`<span class="tag t-${c}">${esc(t)}</span>`;
+
+function phase(a){
+  const d=days(a.launch);
+  if(d==null||d<0) return '';
+  return d<28?'Оптимизация, '+(Math.floor(d/7)+1)+'-я неделя':'Продление, '+(Math.floor((d-28)/30)+1)+'-й месяц';
+}
+const payLate=a=>{const d=parse(a.payDue);return d&&d<today};
+const stepLate=i=>{const d=parse(i.nextDate);return d&&d<today};
+
+function render(){
+  document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.t===tab)));
+  const inDev=S.items.filter(i=>i.stage!=null&&i.stage>=1&&i.stage<=5);
+  const inAds=S.items.filter(i=>i.ads);
+  document.getElementById('n-dev').textContent=inDev.length;
+  document.getElementById('n-ads').textContent=inAds.length;
+  document.getElementById('add').hidden=!(tab==='dev'&&isAdmin());
+  tab==='dev'?renderDev():renderAds();
+  if(openId!=null) renderCard();
+}
+function renderDev(){
+  document.getElementById('lead').textContent='Сайты в работе. Когда этап «Передано в рекламу», проект сам переходит во вкладку «Реклама».';
+  const all=S.items.filter(i=>i.stage!=null);
+  const opts=[{k:'all',t:'Все в работе',c:''},...DEV.map(d=>({k:d.k,t:d.t,c:d.c}))];
+  const cnt=k=>k==='all'?all.filter(i=>i.stage>=1&&i.stage<=5).length:all.filter(i=>i.stage===k).length;
+  if(filter!=='all'&&!DEV.some(d=>d.k===filter)) filter='all';
+  pills(opts,cnt);
+  let list=all.filter(i=>filter==='all'?i.stage>=1&&i.stage<=5:i.stage===filter).filter(match);
+  list.sort((a,b)=>(parse(a.start)||0)-(parse(b.start)||0));
+  rows(list,i=>{const d=devOf(i.stage),n=days(i.start);
+    return {tag:tag(d.t,d.c),small:i.stage>=1&&i.stage<=5&&n!=null?`в работе ${n} дн.`:(i.ads?'ведёт '+i.ads.owner:'')}});
+}
+function renderAds(){
+  document.getElementById('lead').textContent='Клиенты с запущенной рекламой. Статус выбирает контекстолог, сверху то, что требует внимания.';
+  const all=S.items.filter(i=>i.ads);
+  const opts=[{k:'all',t:'Все',c:''},...ADS,{k:'pay',t:'Просрочена оплата',c:'red'}];
+  const cnt=k=>k==='all'?all.length:k==='pay'?all.filter(i=>payLate(i.ads)).length:all.filter(i=>i.ads.status===k).length;
+  if(typeof filter==='number') filter='all';
+  pills(opts,cnt);
+  let list=all.filter(i=>filter==='all'||(filter==='pay'?payLate(i.ads):i.ads.status===filter)).filter(match);
+  const order=Object.fromEntries(ADS.map((a,n)=>[a.k,n]));
+  list.sort((a,b)=>order[a.ads.status]-order[b.ads.status]||a.co.localeCompare(b.co));
+  rows(list,i=>{const a=adOf(i.ads.status);
+    let t=tag(a.t,a.c); if(payLate(i.ads)) t+=tag('Оплата просрочена','red'); if(stepLate(i)) t+=tag('Шаг просрочен','red');
+    return {tag:t,small:[phase(i.ads),'ведёт '+i.ads.owner].filter(Boolean).join(' · ')}});
+}
+function pills(opts,cnt){
+  document.getElementById('pills').innerHTML=opts.map(o=>{const n=cnt(o.k);
+    if(!n&&o.k!=='all'&&o.k!==filter) return '';
+    return `<button class="pill" data-f="${o.k}" aria-pressed="${o.k===filter}">${o.c?`<span class="dot" style="background:var(--${o.c})"></span>`:''}${esc(o.t)} <b>${n}</b></button>`}).join('');
+}
+function rows(list,f){
+  document.getElementById('list').innerHTML=list.length?list.map(i=>{const r=f(i);
+    return `<button class="row" data-id="${i.id}"><span class="co">${esc(i.co)}</span>
+      <span class="side"><span>${r.tag}</span><span class="small">${esc(r.small)}</span></span>
+      <span class="sub">${esc([i.client,i.desc].filter(Boolean).join(' · ')||'Описание не заполнено')}</span></button>`}).join('')
+    :'<div class="empty">Здесь пока пусто</div>';
+}
+
+function renderCard(){
+  const i=S.items.find(x=>x.id===openId); if(!i) return closeCard();
+  const a=i.ads, admin=isAdmin();
+  let h=`<div class="c-head"><div><h2>${esc(i.co)}</h2><div class="who">${esc(i.client||'Клиент не указан')}</div></div><button class="x" id="x" aria-label="Закрыть">×</button></div>`;
+  if(editing){
+    h+=`<div class="sec"><h3>Данные проекта</h3>
+      <label class="field">Компания<input class="inp" id="e-co" value="${esc(i.co)}"></label>
+      <label class="field">Клиент<input class="inp" id="e-client" value="${esc(i.client)}"></label>
+      <label class="field">Краткое описание<textarea class="inp" id="e-desc" placeholder="Чем занимается, город">${esc(i.desc)}</textarea></label>
+      <label class="field">Ссылка на сайт<input class="inp" id="e-site" type="url" placeholder="https://..." value="${esc(i.site)}"></label>
+      <div style="display:flex;gap:8px"><button class="btn" id="e-save">Сохранить</button><button class="btn ghost" id="e-cancel">Отмена</button></div></div>`;
+  }else{
+    h+=`<div class="sec"><h3>Описание</h3><p class="desc">${i.desc?esc(i.desc):'<span class="lock">Не заполнено</span>'}</p></div>
+      <div class="sec site"><h3>Сайт</h3>${i.site?`<a href="${esc(i.site)}" target="_blank" rel="noopener">${esc(i.site)}</a>`:'<span class="lock">Ссылки нет</span>'}</div>`;
+  }
+  if(i.stage!=null){
+    h+=`<div class="sec"><h3>Этап разработки</h3><div class="choices">${DEV.map(d=>
+      `<button class="choice" data-stage="${d.k}" aria-pressed="${i.stage===d.k}" ${!admin?'disabled':''}><span class="dot" style="background:var(--${d.c})"></span>${esc(d.t)}</button>`).join('')}</div>
+      ${!admin?'<div class="lock">Этап меняют Дэн или Султан.</div>':''}</div>`;
+  }
+  if(a){
+    const ph=phase(a);
+    h+=`<div class="sec"><h3>Реклама${ph?' · '+esc(ph):''}</h3><div class="choices">${ADS.map(s=>
+      `<button class="choice" data-st="${s.k}" aria-pressed="${a.status===s.k}" ${!canAds()?'disabled':''}><span class="dot" style="background:var(--${s.c})"></span>${esc(s.t)}</button>`).join('')}</div>
+      <div class="two">
+        <label>Запуск рекламы<input class="inp" type="date" id="launch" value="${iso(a.launch)}" ${!canAds()?'disabled':''}></label>
+        <label>Оплата до${payLate(a)?' <b style="color:var(--red)">просрочена</b>':''}<input class="inp" type="date" id="payDue" value="${iso(a.payDue)}" ${!canAds()?'disabled':''}></label>
+      </div>
+      <label class="field">Ведёт<select class="inp" id="owner" ${!admin?'disabled':''}>${['Адина','Дэн'].map(o=>`<option ${o===a.owner?'selected':''}>${o}</option>`).join('')}</select></label></div>`;
+  }
+  h+=`<div class="sec"><h3>Что сделать дальше</h3><div class="two">
+      <input class="inp" id="next" placeholder="Например, созвон по отчёту" value="${esc(i.next)}">
+      <input class="inp" type="date" id="nextDate" value="${iso(i.nextDate)}" aria-label="Когда"></div>
+      ${stepLate(i)?'<div class="lock" style="color:var(--red)">Срок прошёл</div>':''}</div>
+    <div class="sec"><h3>Заметки</h3>
+      <textarea class="inp" id="note" placeholder="Что произошло: звонок, договорённость, правка"></textarea>
+      <div><button class="btn ghost" id="addNote">Добавить заметку</button></div>
+      <div class="notes">${i.notes.slice().reverse().map(n=>`<div class="note"><div class="when">${n.when?esc(n.when):'из старой таблицы'} · ${esc(n.who)}</div>${esc(n.text)}</div>`).join('')||'<span class="lock">Заметок пока нет</span>'}</div></div>`;
+  if(admin&&!editing){
+    h+=confirmDel?`<div class="confirm"><b>Удалить «${esc(i.co)}» навсегда?</b><span>Вместе с заметками. Отменить будет нельзя.</span>
+        <div style="display:flex;gap:8px"><button class="btn danger" id="delYes">Да, удалить</button><button class="btn ghost" id="delNo">Нет</button></div></div>`
+      :`<div class="admin"><button class="btn ghost" id="edit">Изменить данные</button><button class="btn ghost" id="del" style="color:var(--red)">Удалить проект</button></div>`;
+  }
+  document.getElementById('card').innerHTML=h;
+}
+function openCard(id){openId=id;editing=false;confirmDel=false;document.getElementById('scrim').hidden=false;document.getElementById('card').hidden=false;renderCard();document.getElementById('x').focus()}
+function closeCard(){openId=null;document.getElementById('scrim').hidden=true;document.getElementById('card').hidden=true}
+const cur=()=>S.items.find(x=>x.id===openId);
+const log=(i,text)=>i.notes.push({who:me(),when:now(),text});
+
+document.addEventListener('click',e=>{
+  const t=e.target;
+  const row=t.closest('.row'); if(row){openCard(+row.dataset.id);return}
+  const tb=t.closest('.tab'); if(tb){tab=tb.dataset.t;filter='all';try{localStorage.setItem(KEY+'-tab',tab)}catch(e){}render();return}
+  const p=t.closest('[data-f]'); if(p){const v=p.dataset.f;filter=/^\d+$/.test(v)?+v:v;render();return}
+  if(t.id==='scrim'||t.closest('#x')){closeCard();return}
+  if(t.id==='reset'){S=seed();save();closeCard();render();return}
+  if(t.id==='add'){
+    const id=++S.seq; S.items.push({id,co:'Новый проект',client:'',start:now(),stage:1,desc:'',site:'',next:'',nextDate:'',notes:[{who:me(),when:now(),text:'Проект создан'}],ads:null});
+    save();tab='dev';filter='all';render();openCard(id);editing=true;renderCard();return;
+  }
+  const i=cur(); if(!i) return;
+  const st=t.closest('[data-stage]');
+  if(st&&!st.disabled){const k=+st.dataset.stage; if(k===i.stage) return;
+    i.stage=k; log(i,'Этап: '+devOf(k).t);
+    if(k===6&&!i.ads){i.ads={owner:'Адина',status:'new',launch:'',payDue:''};log(i,'Передано в рекламу, ведёт Адина')}
+    if(k!==6&&i.ads){i.ads=null;log(i,'Убрано из рекламы')}
+    save();render();return}
+  const sa=t.closest('[data-st]');
+  if(sa&&!sa.disabled){if(sa.dataset.st===i.ads.status) return; i.ads.status=sa.dataset.st; log(i,'Статус рекламы: '+adOf(i.ads.status).t); save();render();return}
+  if(t.id==='addNote'){const v=document.getElementById('note').value.trim(); if(!v) return; log(i,v); save();render();return}
+  if(t.id==='edit'){editing=true;renderCard();return}
+  if(t.id==='e-cancel'){editing=false;renderCard();return}
+  if(t.id==='e-save'){
+    i.co=document.getElementById('e-co').value.trim()||i.co; i.client=document.getElementById('e-client').value.trim();
+    i.desc=document.getElementById('e-desc').value.trim(); let u=document.getElementById('e-site').value.trim();
+    if(u&&!/^https?:\/\//.test(u)) u='https://'+u; i.site=u; editing=false; save();render();return}
+  if(t.id==='del'){confirmDel=true;renderCard();return}
+  if(t.id==='delNo'){confirmDel=false;renderCard();return}
+  if(t.id==='delYes'){S.items=S.items.filter(x=>x!==i);save();closeCard();render();return}
+});
+document.addEventListener('change',e=>{
+  const t=e.target;
+  if(t.id==='me'){editing=false;confirmDel=false;render();return}
+  const i=cur(); if(!i) return;
+  if(t.id==='launch'){i.ads.launch=deiso(t.value);save();render()}
+  if(t.id==='payDue'){i.ads.payDue=deiso(t.value);save();render()}
+  if(t.id==='owner'){i.ads.owner=t.value;log(i,'Ведёт: '+t.value);save();render()}
+  if(t.id==='next'||t.id==='nextDate'){i.next=document.getElementById('next').value.trim();i.nextDate=deiso(document.getElementById('nextDate').value);save();render()}
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&openId!=null)closeCard()});
+document.getElementById('q').addEventListener('input',render);
+render();
+</script>
+</body>
+</html>
