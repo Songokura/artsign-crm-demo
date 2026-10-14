@@ -4,130 +4,300 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="data:,">
 <title>Проекты ArtSign</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@600;700&family=Onest:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geologica:wght@500;600;700&family=Onest:wght@400;500;600;700&display=swap">
 <style>
 :root{
-  --bg:#eef0ec;--surface:#fff;--sunk:#e3e6e0;--ink:#1b211d;--muted:#5f6862;--line:#d4d9d2;--accent:#2f47c9;
-  --blue:#2f47c9;--blue-s:#e3e7fb;--red:#c23a2e;--red-s:#fbe4e1;--amber:#9a6208;--amber-s:#fbefd8;--green:#0d7655;--green-s:#dcf0e7;--grey:#5b6470;--grey-s:#eceef0;
+  --bg:#f1f2ee;--surface:#fff;--sunk:#e8eae4;--ink:#1a201c;--muted:#5a635d;--line:#d5d9d2;--accent:#2b45c4;--on-accent:#fff;
+  --red:#b4312a;--red-s:#fbe6e3;--amber:#8a5806;--amber-s:#fbeed6;--green:#0b6b4e;--green-s:#dbf0e6;--blue:#2b45c4;--blue-s:#e3e7fa;--grey:#59636c;--grey-s:#eaedf0;
   --f-d:"Geologica","Segoe UI",system-ui,sans-serif;--f-b:"Onest","Segoe UI",system-ui,sans-serif;
+  --shadow:0 12px 36px rgb(0 0 0/.16);
 }
 @media (prefers-color-scheme:dark){:root{
-  --bg:#121614;--surface:#1b201d;--sunk:#252c28;--ink:#e7ece8;--muted:#9ba59e;--line:#313a35;--accent:#8ea0ff;
-  --blue:#8ea0ff;--blue-s:#232a4d;--red:#ff8a7d;--red-s:#3d1f1c;--amber:#f0b956;--amber-s:#3a2d14;--green:#4fd0a2;--green-s:#173a2e;--grey:#b8c0c8;--grey-s:#262c30;color-scheme:dark}}
+  --bg:#121614;--surface:#1b201d;--sunk:#262c29;--ink:#e8ede9;--muted:#a3ada6;--line:#333c37;--accent:#97a7ff;--on-accent:#101428;
+  --red:#ff9a8e;--red-s:#43211d;--amber:#f3bf62;--amber-s:#3c2e14;--green:#5ad6a8;--green-s:#183d30;--blue:#97a7ff;--blue-s:#262e55;--grey:#bcc4cc;--grey-s:#272d31;
+  --shadow:0 12px 36px rgb(0 0 0/.5);color-scheme:dark}}
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 html,body{margin:0}
-body{background:var(--bg);color:var(--ink);font:15px/1.5 var(--f-b)}
-.wrap{max-width:1100px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-header{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
-.top{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;padding-block:14px 0}
-h1{font:700 20px var(--f-d);margin:0 auto 0 0}
-.me{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted)}
+body{background:var(--bg);color:var(--ink);font:16px/1.5 var(--f-b);-webkit-text-size-adjust:100%}
+body.has-card{overflow:hidden}
+.wrap{max-width:1040px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 input,select,textarea,button{font:inherit;color:inherit}
-.inp{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:9px 12px;width:100%;min-width:0}
-select.inp{width:auto}
-.tabs{display:flex;gap:6px;margin-top:10px}
-.tab{flex:1 1 0;max-width:260px;border:0;background:none;padding:10px 6px 12px;font:600 16px var(--f-d);color:var(--muted);cursor:pointer;border-bottom:3px solid transparent}
+button{cursor:pointer}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+a{color:var(--accent)}
+h1,h2,h3{font-family:var(--f-d);margin:0}
+
+/* шапка */
+header{background:var(--surface);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:5}
+.top{display:flex;gap:10px 16px;align-items:center;padding-block:12px 0;flex-wrap:wrap}
+.brand h1{font-size:20px;font-weight:700;line-height:1.2}
+.brand p{margin:2px 0 0;font-size:13px;color:var(--muted)}
+.me{margin-left:auto;display:flex;gap:8px;align-items:center;font-size:14px;color:var(--muted);font-weight:500}
+.me select{background:var(--sunk);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-weight:600;color:var(--ink);min-height:40px}
+.tabs{display:flex;gap:4px;margin-top:8px;overflow-x:auto;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:0 0 auto;border:0;background:none;padding:10px 12px 12px;font:600 16px var(--f-d);color:var(--muted);border-bottom:3px solid transparent;border-radius:6px 6px 0 0;display:flex;gap:8px;align-items:center;white-space:nowrap}
 .tab[aria-selected="true"]{color:var(--ink);border-color:var(--accent)}
-.tab small{font:500 13px var(--f-b);color:var(--muted);margin-left:6px}
-:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-main{padding-block:16px 48px;display:grid;gap:14px}
-.bar{display:flex;gap:10px;flex-wrap:wrap}
-.bar .inp{flex:1 1 240px}
-.btn{border:1px solid transparent;border-radius:10px;padding:9px 14px;font-weight:600;cursor:pointer;background:var(--accent);color:var(--surface);white-space:nowrap}
+.tab b{font:600 12.5px var(--f-b);background:var(--sunk);color:var(--muted);border-radius:12px;padding:1px 8px;min-width:22px;text-align:center}
+.tab b.hot{background:var(--red-s);color:var(--red)}
+.tab b:empty{display:none}
+
+main{padding-block:16px 56px;display:grid;gap:14px;align-content:start}
+.lead{margin:0;color:var(--muted);font-size:14.5px}
+.lead b{color:var(--ink);font-weight:600}
+
+/* подсказка при первом входе */
+.intro{background:var(--blue-s);border-radius:14px;padding:14px 16px;display:grid;gap:8px;color:var(--ink)}
+.intro h2{font-size:16px}
+.intro ol{margin:0;padding-left:20px;display:grid;gap:3px;font-size:15px}
+.intro .path-line{font-weight:600}
+.intro div{display:flex;justify-content:flex-end}
+
+/* кнопки */
+.btn{border:1px solid transparent;border-radius:12px;padding:10px 16px;min-height:44px;font-weight:600;background:var(--accent);color:var(--on-accent);white-space:nowrap;display:inline-flex;align-items:center;gap:8px;justify-content:center;text-decoration:none}
 .btn.ghost{background:var(--surface);border-color:var(--line);color:var(--ink);font-weight:500}
-.btn.danger{background:var(--red);color:var(--surface)}
+.btn.danger{background:var(--red);color:#fff}
+.btn.sm{min-height:36px;padding:6px 12px;font-size:14px;border-radius:10px}
 .btn:disabled{opacity:.5;cursor:not-allowed}
+.btn.ghost:hover:not(:disabled){border-color:var(--muted)}
+
+/* панель поиска и фильтров */
+.bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.inp{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;width:100%;min-width:0;min-height:44px}
+.bar .inp{flex:1 1 220px}
+textarea.inp{min-height:74px;resize:vertical}
 .pills{display:flex;gap:6px;flex-wrap:wrap}
-.pill{border:1px solid var(--line);background:var(--surface);border-radius:20px;padding:6px 12px;font-size:13.5px;cursor:pointer;display:flex;gap:6px;align-items:center}
-.pill b{font-weight:600}
+.pill{border:1px solid var(--line);background:var(--surface);border-radius:22px;padding:7px 12px;font-size:14px;display:flex;gap:7px;align-items:center;min-height:36px;color:var(--ink)}
+.pill b{font-weight:600;color:var(--muted)}
 .pill[aria-pressed="true"]{background:var(--ink);color:var(--surface);border-color:var(--ink)}
-.dot{width:8px;height:8px;border-radius:50%;flex:none}
+.pill[aria-pressed="true"] b{color:inherit}
+.dot{width:9px;height:9px;border-radius:50%;flex:none;background:var(--c,var(--grey))}
+
+/* легенда */
+.legend{background:var(--surface);border:1px solid var(--line);border-radius:12px;font-size:14.5px}
+.legend summary{padding:11px 14px;cursor:pointer;font-weight:600;list-style:none;display:flex;gap:8px;align-items:center}
+.legend summary::-webkit-details-marker{display:none}
+.legend summary::before{content:"?";width:22px;height:22px;border-radius:50%;background:var(--sunk);display:inline-grid;place-items:center;font-size:13px;color:var(--muted)}
+.legend[open] summary{border-bottom:1px solid var(--line)}
+.legend dl{margin:0;padding:10px 14px 12px;display:grid;grid-template-columns:auto 1fr;gap:7px 12px;align-items:baseline}
+.legend dt{font-weight:600;white-space:nowrap;display:flex;gap:7px;align-items:center}
+.legend dd{margin:0;color:var(--muted)}
+.legend .arrow{grid-column:1/-1;color:var(--muted);font-size:13.5px;padding-top:4px;border-top:1px dashed var(--line);margin-top:2px}
+
+/* группы на вкладке Сегодня */
+.group{display:grid;gap:8px}
+.group>h2{font-size:17px;display:flex;gap:8px;align-items:center;margin-top:6px}
+.group>h2 .n{font:600 13px var(--f-b);border-radius:12px;padding:1px 9px;background:var(--sunk);color:var(--muted)}
+.group.g2>h2 .n{background:var(--red-s);color:var(--red)}
+.group.g1>h2 .n{background:var(--amber-s);color:var(--amber)}
+.group>p{margin:-4px 0 0;color:var(--muted);font-size:14px}
+details.group summary{cursor:pointer;list-style:none}
+details.group summary::-webkit-details-marker{display:none}
+details.group summary h2::after{content:"показать";font:500 14px var(--f-b);color:var(--accent);margin-left:auto}
+details.group[open] summary h2::after{content:"свернуть"}
+.calm{background:var(--green-s);color:var(--green);border-radius:14px;padding:18px 16px;display:grid;gap:4px}
+.calm b{font:600 17px var(--f-d)}
+.empty{color:var(--muted);padding:22px 8px;text-align:center;background:var(--surface);border:1px dashed var(--line);border-radius:14px}
+
+/* строки списка */
 .list{display:grid;gap:8px}
-.row{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px 14px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;cursor:pointer;text-align:left;width:100%}
-.row:hover{border-color:var(--muted)}
-.row .co{font-weight:600;font-size:15.5px;min-width:0;overflow-wrap:anywhere}
-.row .sub{grid-column:1;color:var(--muted);font-size:13.5px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.row .side{grid-row:1/span 2;grid-column:2;display:grid;justify-items:end;gap:4px;align-content:start}
-.row .small{font-size:12.5px;color:var(--muted);white-space:nowrap}
-.tag{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;padding:4px 10px;border-radius:20px;white-space:nowrap}
-.t-blue{background:var(--blue-s);color:var(--blue)}.t-red{background:var(--red-s);color:var(--red)}.t-amber{background:var(--amber-s);color:var(--amber)}
-.t-green{background:var(--green-s);color:var(--green)}.t-grey{background:var(--grey-s);color:var(--grey)}
-.empty{color:var(--muted);padding:20px 4px;text-align:center}
-.hint{font-size:13px;color:var(--muted);margin:0}
-/* карточка */
-.scrim{position:fixed;inset:0;background:rgb(0 0 0 / .35);z-index:20}
-.card{position:fixed;z-index:21;inset:auto 0 0 0;max-height:92vh;overflow-y:auto;background:var(--surface);border-radius:16px 16px 0 0;
-  padding:20px max(18px,env(safe-area-inset-right,0px)) calc(24px + env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px));display:grid;gap:18px;align-content:start}
-@media (min-width:760px){.card{inset:0 0 0 auto;width:480px;max-height:none;border-radius:0;border-left:1px solid var(--line)}}
-.c-head{display:flex;gap:12px;justify-content:space-between;align-items:start}
-.c-head h2{margin:0;font:700 22px/1.2 var(--f-d)}
+.row{background:var(--surface);border:1px solid var(--line);border-radius:14px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 14px;align-items:start;padding:12px 14px}
+.row.hot{border-left:4px solid var(--red)}
+.row.warm{border-left:4px solid var(--amber)}
+.row-main{grid-column:1;display:grid;gap:3px;text-align:left;background:none;border:0;padding:0;min-width:0;border-radius:8px;color:inherit}
+.row-main:hover .co{color:var(--accent)}
+.co{font:600 16.5px/1.3 var(--f-d);overflow-wrap:anywhere}
+.co small{font:500 14px var(--f-b);color:var(--muted);margin-left:6px}
+.sub{color:var(--muted);font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.meta{display:flex;gap:6px 10px;align-items:center;flex-wrap:wrap;font-size:13.5px;color:var(--muted);margin-top:2px}
+.steps{display:inline-flex;gap:2px;flex:none}
+.steps i{display:block;width:12px;height:6px;border-radius:2px;background:var(--sunk)}
+.steps i.on{background:var(--blue)}
+.steps i.last.on{background:var(--green)}
+.steps.off i{background:var(--line)}
+.chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:3px}
+.chip{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;padding:3px 9px;border-radius:14px;white-space:nowrap;background:var(--grey-s);color:var(--grey)}
+.chip.red{background:var(--red-s);color:var(--red)}.chip.amber{background:var(--amber-s);color:var(--amber)}
+.chip.blue{background:var(--blue-s);color:var(--blue)}.chip.green{background:var(--green-s);color:var(--green)}
+.side{grid-column:2;grid-row:1/span 2;display:grid;gap:6px;justify-items:end;align-content:start}
+.side .small{font-size:13px;color:var(--muted);text-align:right;white-space:nowrap}
+.tag{display:inline-flex;align-items:center;gap:7px;font-size:13.5px;font-weight:600;padding:6px 12px;border-radius:20px;white-space:nowrap;background:var(--grey-s);color:var(--grey)}
+.tag.red{background:var(--red-s);color:var(--red)}.tag.amber{background:var(--amber-s);color:var(--amber)}
+.tag.blue{background:var(--blue-s);color:var(--blue)}.tag.green{background:var(--green-s);color:var(--green)}
+/* быстрый выбор статуса прямо в строке */
+.selw{position:relative;display:inline-flex}
+.selw select{appearance:none;-webkit-appearance:none;border:0;border-radius:20px;padding:6px 30px 6px 12px;min-height:36px;font-size:13.5px;font-weight:600;background:var(--grey-s);color:var(--grey);max-width:100%}
+.selw::after{content:"";position:absolute;right:12px;top:50%;width:7px;height:7px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-70%) rotate(45deg);pointer-events:none;color:inherit}
+.selw.red{color:var(--red)}.selw.red select{background:var(--red-s);color:var(--red)}
+.selw.amber{color:var(--amber)}.selw.amber select{background:var(--amber-s);color:var(--amber)}
+.selw.blue{color:var(--blue)}.selw.blue select{background:var(--blue-s);color:var(--blue)}
+.selw.green{color:var(--green)}.selw.green select{background:var(--green-s);color:var(--green)}
+.selw.grey{color:var(--grey)}
+.foot{margin:8px 0 0;font-size:13.5px;color:var(--muted);display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+
+/* карточка проекта: нижний лист на телефоне, панель справа на десктопе */
+.scrim{position:fixed;inset:0;background:rgb(0 0 0/.4);z-index:20}
+.card{position:fixed;z-index:21;inset:auto 0 0 0;max-height:94dvh;overflow-y:auto;background:var(--surface);border-radius:18px 18px 0 0;box-shadow:var(--shadow);
+  padding:10px max(18px,env(safe-area-inset-right,0px)) calc(28px + env(safe-area-inset-bottom,0px)) max(18px,env(safe-area-inset-left,0px));display:grid;gap:20px;align-content:start}
+.card::before{content:"";width:40px;height:4px;border-radius:2px;background:var(--line);margin:0 auto 2px}
+@media (min-width:760px){.card{inset:0 0 0 auto;width:540px;max-height:none;border-radius:0;border-left:1px solid var(--line);padding-top:20px}.card::before{display:none}}
+.c-head{display:flex;gap:12px;justify-content:space-between;align-items:start;position:sticky;top:-10px;background:var(--surface);padding:8px 0 10px;margin-bottom:-8px;z-index:1;border-bottom:1px solid var(--line)}
+.c-head .kicker{font-size:13px;color:var(--muted);font-weight:600;letter-spacing:.02em;text-transform:uppercase;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.c-head h2{font-size:23px;line-height:1.2;overflow-wrap:anywhere;margin-top:2px}
 .c-head .who{color:var(--muted);margin-top:2px}
-.x{flex:none;width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:none;font-size:20px;cursor:pointer}
-.sec{display:grid;gap:8px}
-.sec>h3{margin:0;font-size:12.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-.desc{margin:0;white-space:pre-wrap}
-.site a{color:var(--accent);font-weight:500;overflow-wrap:anywhere}
-.choices{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:6px}
-.choice{border:1px solid var(--line);background:var(--surface);border-radius:10px;padding:9px 10px;cursor:pointer;text-align:left;font-size:14px;display:flex;gap:8px;align-items:center}
-.choice[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink);font-weight:600}
-.choice:disabled{cursor:not-allowed;opacity:.55}
+.x{flex:none;width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:var(--surface);font-size:22px;line-height:1}
+.c-links{display:flex;gap:8px;flex-wrap:wrap}
+.alerts{display:grid;gap:6px}
+.alert{border-radius:12px;padding:10px 14px;font-weight:600;display:flex;gap:10px;align-items:center;background:var(--amber-s);color:var(--amber)}
+.alert.red{background:var(--red-s);color:var(--red)}
+.alert.blue{background:var(--blue-s);color:var(--blue)}
+.sec{display:grid;gap:10px}
+.sec>h3{font-size:13px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.sec>h3 .auto{font:500 12.5px var(--f-b);letter-spacing:0;text-transform:none;background:var(--sunk);padding:2px 8px;border-radius:10px}
+.sec-next{background:var(--sunk);border-radius:14px;padding:14px;margin:0 -4px}
+.sec-next>h3{color:var(--ink)}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.two label,.field{display:grid;gap:4px;font-size:13px;color:var(--muted)}
-.lock{font-size:12.5px;color:var(--muted)}
+.field{display:grid;gap:4px;font-size:13.5px;color:var(--muted);font-weight:500;min-width:0}
+.field .inp{color:var(--ink);font-weight:400}
+.inp:disabled{opacity:.7;background:var(--sunk);cursor:not-allowed}
+.lock{font-size:13.5px;color:var(--muted);display:flex;gap:6px;align-items:center}
+.lock::before{content:"";width:9px;height:11px;border:2px solid currentColor;border-radius:2px 2px 3px 3px;border-top-width:5px;flex:none;opacity:.7}
+.desc{margin:0;white-space:pre-wrap;overflow-wrap:anywhere}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:14.5px}
+.kv dt{color:var(--muted)}.kv dd{margin:0;overflow-wrap:anywhere}
+
+/* путь проекта: вертикальные шаги */
+.path{list-style:none;margin:0;padding:0;display:grid}
+.path li{position:relative;padding-left:34px}
+.path li::before{content:"";position:absolute;left:11px;top:26px;bottom:-4px;width:2px;background:var(--line)}
+.path li:last-child::before{display:none}
+.path li.done::before{background:var(--blue)}
+.p-btn{display:block;width:100%;text-align:left;background:none;border:0;padding:5px 8px 9px 8px;margin-left:-8px;border-radius:10px;color:inherit;position:relative}
+.p-btn:hover:not(:disabled){background:var(--sunk)}
+.p-btn:disabled{cursor:default}
+.p-dot{position:absolute;left:-26px;top:7px;width:24px;height:24px;border-radius:50%;border:2px solid var(--line);background:var(--surface);display:grid;place-items:center;font:600 12px var(--f-b);color:var(--muted)}
+.done .p-dot{background:var(--blue);border-color:var(--blue);color:var(--surface)}
+.now .p-dot{border-color:var(--accent);color:var(--accent);box-shadow:0 0 0 4px var(--blue-s)}
+.now.last .p-dot{border-color:var(--green);color:var(--green);box-shadow:0 0 0 4px var(--green-s)}
+.done.last .p-dot{background:var(--green);border-color:var(--green)}
+.p-btn b{display:block;font-weight:600}
+.now .p-btn b{color:var(--accent)}
+.now.last .p-btn b{color:var(--green)}
+.p-btn small{display:block;color:var(--muted);font-size:13.5px}
+.p-btn em{display:inline-block;font-style:normal;font-size:12.5px;font-weight:600;margin-top:4px;padding:1px 8px;border-radius:10px;background:var(--blue-s);color:var(--blue)}
+.now.last .p-btn em{background:var(--green-s);color:var(--green)}
+.p-tail{margin:6px 0 0 34px;padding:10px 12px;border-radius:10px;background:var(--green-s);color:var(--green);font-size:14px;font-weight:500}
+.p-left{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-top:6px}
+
+/* выбор статуса рекламы с пояснением */
+.choices{display:grid;gap:6px}
+.choice{border:1px solid var(--line);background:var(--surface);border-radius:12px;padding:9px 12px;text-align:left;display:flex;gap:10px;align-items:center;color:inherit;min-height:44px}
+.choice b{display:block;font-weight:600}
+.choice small{display:block;color:var(--muted);font-size:13px}
+.choice[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.choice:disabled{cursor:not-allowed;opacity:.6}
+.choice:disabled[aria-pressed="true"]{opacity:1}
+.phase{font-size:14px;color:var(--ink);background:var(--sunk);padding:8px 12px;border-radius:10px}
+.phase small{display:block;color:var(--muted);font-size:13px}
+
 .notes{display:grid;gap:10px}
-.note{border-left:3px solid var(--line);padding-left:10px}
-.note .when{font-size:12px;color:var(--muted)}
-textarea.inp{min-height:70px;resize:vertical}
+.note{border-left:3px solid var(--line);padding-left:12px;overflow-wrap:anywhere}
+.note .when{font-size:13px;color:var(--muted)}
+.note.sys{color:var(--muted);font-size:14px}
+.note-form{display:grid;gap:8px}
 .admin{border-top:1px solid var(--line);padding-top:14px;display:flex;gap:8px;flex-wrap:wrap}
-.confirm{background:var(--red-s);border-radius:10px;padding:12px;display:grid;gap:8px;color:var(--ink)}
-@media (max-width:480px){.two{grid-template-columns:1fr}.row{grid-template-columns:minmax(0,1fr)}.row .side{grid-row:auto;grid-column:1;display:flex;flex-wrap:wrap;gap:4px 8px;align-items:center}.row .side>span:first-child{display:flex;flex-wrap:wrap;gap:4px}}
+.confirm{background:var(--red-s);border-radius:12px;padding:14px;display:grid;gap:8px;color:var(--ink)}
+.confirm.soft{background:var(--amber-s)}
+.confirm b{font-family:var(--f-d)}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+
+/* всплывающее сообщение */
+.toast{position:fixed;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);max-width:min(92vw,520px);background:var(--ink);color:var(--surface);padding:12px 16px;border-radius:12px;font-size:14.5px;z-index:30;box-shadow:var(--shadow);text-align:center}
+
+@media (max-width:560px){
+  .row{grid-template-columns:minmax(0,1fr)}
+  .side{grid-column:1;grid-row:auto;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;justify-items:start}
+  .side .small{text-align:left}
+  .two{grid-template-columns:1fr}
+  .legend dl{grid-template-columns:1fr;gap:2px 0}.legend dd{margin-bottom:6px}
+  .brand p{display:none}
+  .tabs{gap:0}
+  .tab{flex:1 1 0;justify-content:center;padding:10px 4px 12px;font-size:15px;gap:5px}
+  .tab b{padding:1px 6px;min-width:20px;font-size:12px}
+}
+@media (max-width:400px){
+  .brand h1{font-size:18px}
+  .me{font-size:13px;gap:5px}
+  .me select{padding:6px 8px;min-height:36px}
+  .tab{font-size:14.5px}
+}
+@media (prefers-reduced-motion:no-preference){.card{animation:up .22s ease-out}@keyframes up{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}}
 </style>
 </head>
 <body>
 <header>
   <div class="wrap">
     <div class="top">
-      <h1>Проекты ArtSign</h1>
+      <div class="brand"><h1>Проекты ArtSign</h1><p>Сайты в разработке и реклама у клиентов</p></div>
       <label class="me" for="me">Вы:
-        <select id="me" class="inp">
+        <select id="me">
           <option>Дэн</option><option>Султан</option><option>Адина</option><option>Помощница</option>
         </select>
       </label>
     </div>
-    <div class="tabs" role="tablist">
-      <button class="tab" role="tab" data-t="dev">Разработка<small id="n-dev"></small></button>
-      <button class="tab" role="tab" data-t="ads">Реклама<small id="n-ads"></small></button>
+    <div class="tabs" role="tablist" aria-label="Разделы">
+      <button class="tab" role="tab" data-t="today" type="button">Сегодня<b id="n-today"></b></button>
+      <button class="tab" role="tab" data-t="dev" type="button">Разработка<b id="n-dev"></b></button>
+      <button class="tab" role="tab" data-t="ads" type="button">Реклама<b id="n-ads"></b></button>
     </div>
   </div>
 </header>
 
 <main class="wrap">
-  <p class="hint" id="lead"></p>
-  <div class="bar">
-    <input id="q" class="inp" type="search" placeholder="Найти компанию или клиента" aria-label="Поиск">
-    <button id="add" class="btn" type="button">+ Новый проект</button>
-  </div>
-  <div class="pills" id="pills"></div>
-  <div class="list" id="list"></div>
-  <p class="hint">Пробная версия: изменения видны только в этом браузере. <button id="reset" class="btn ghost" type="button" style="padding:4px 10px;font-size:13px">Вернуть исходные данные</button></p>
+  <section class="intro" id="intro" hidden aria-label="Как тут всё устроено">
+    <h2>Как тут всё устроено</h2>
+    <ol>
+      <li><b>Сегодня</b> - что горит у вас прямо сейчас и что сделать.</li>
+      <li><b>Разработка</b> - сайты в работе. <b>Реклама</b> - клиенты, у которых идёт реклама.</li>
+      <li class="path-line">Путь проекта: Разработка → этап «Передано в рекламу» → Реклама у Адины.</li>
+    </ol>
+    <div><button class="btn sm" id="introOk" type="button">Понятно</button></div>
+  </section>
+  <div id="view"></div>
+  <p class="foot">Пробная версия: изменения видны только в этом браузере. <button id="reset" class="btn ghost sm" type="button">Вернуть исходные данные</button></p>
 </main>
 
 <div class="scrim" id="scrim" hidden></div>
-<aside class="card" id="card" hidden aria-label="Карточка проекта"></aside>
+<aside class="card" id="card" role="dialog" aria-modal="true" aria-label="Карточка проекта" hidden></aside>
+<div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
 
 <script>
+/* Этапы разработки: порядок важен, последний этап передаёт проект в рекламу */
 const DEV=[
-  {k:1,t:'Сбор информации',c:'grey'},{k:2,t:'Лэндинг',c:'blue'},{k:3,t:'Правки',c:'amber'},
-  {k:4,t:'Хостинг',c:'blue'},{k:5,t:'Этап 2 (реклама)',c:'blue'},{k:6,t:'Передано в рекламу',c:'green'},{k:0,t:'Ушёл',c:'grey'}
+  {k:1,t:'Сбор информации',c:'grey',d:'Ждём от клиента текст, фото, доступы'},
+  {k:2,t:'Лэндинг',c:'blue',d:'Собираем сайт, показываем клиенту'},
+  {k:3,t:'Правки',c:'amber',d:'Клиент посмотрел, вносим его правки'},
+  {k:4,t:'Хостинг',c:'blue',d:'Сайт заливается на домен клиента'},
+  {k:5,t:'Этап 2 (реклама)',c:'blue',d:'Готовим рекламу: план, посадочные, конверсии'},
+  {k:6,t:'Передано в рекламу',c:'green',d:'Сайт готов. Рекламу ведёт Адина, проект виден во вкладке «Реклама»'},
+  {k:0,t:'Ушёл',c:'grey',d:'Клиент отказался. В списке «в работе» не показывается'}
 ];
+/* Статусы рекламы: не по порядку, меняются туда-сюда */
 const ADS=[
-  {k:'fire',t:'Нужно внимание',c:'red'},{k:'new',t:'Новый',c:'blue'},{k:'wait',t:'Ждём клиента',c:'amber'},
-  {k:'ok',t:'Всё хорошо',c:'green'},{k:'pause',t:'Пауза',c:'grey'}
+  {k:'fire',t:'Нужно внимание',c:'red',d:'Что-то не так: долг, пропал, проблемы в Google. Разобраться первым делом'},
+  {k:'new',t:'Новый',c:'blue',d:'Только передан из разработки, рекламу ещё не начали'},
+  {k:'wait',t:'Ждём клиента',c:'amber',d:'Мяч у клиента: оплата, материалы, решение'},
+  {k:'ok',t:'Всё хорошо',c:'green',d:'Реклама идёт, заявки есть'},
+  {k:'pause',t:'Пауза',c:'grey',d:'Реклама остановлена по решению клиента'}
 ];
 const ADMINS=['Дэн','Султан'];
+const WHO_EDIT='Дэн и Султан', WHO_ADS='Дэн, Султан и Адина';
+const GEN={'Адина':'Адины','Дэн':'Дэна'}; const gen=n=>GEN[n]||n;
+const STUCK_DAYS=21, STALE_DAYS=14, SOON_DAYS=3, PAY_SOON_DAYS=7;
 const s=(u)=>u?'https://'+u:'';
 /* id, компания, клиент, начало, этап разработки, описание, сайт, заметка разработки */
 const ROWS=[
@@ -220,9 +390,11 @@ const deiso=v=>v?v.split('-').reverse().join('.'):'';
 const days=x=>{const d=parse(x);return d?Math.round((today-d)/DAY):null};
 const esc=x=>String(x??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
 const now=()=>fmt(new Date());
+const dn=n=>n+' дн.';
+/* «сегодня», «завтра», «через 3 дн.», «вчера», «5 дн. назад» */
+function rel(x){const n=days(x);if(n==null)return '';if(n===0)return 'сегодня';if(n===-1)return 'завтра';if(n===1)return 'вчера';return n<0?'через '+dn(-n):dn(n)+' назад'}
 
 function seed(){
-  let n=200;
   const items=ROWS.map(([id,co,client,start,stage,desc,site,dnote])=>{
     const it={id,co,client,start,stage,desc:desc||'',site:s(site),next:'',nextDate:'',notes:[],ads:null};
     if(dnote) it.notes.push({who:'Дэн',when:'',text:dnote});
@@ -235,172 +407,310 @@ function seed(){
   });
   ONLY_ADS.forEach(([id,co,client,owner,status,launch,payDue,note,desc])=>items.push(
     {id,co,client,start:'',stage:null,desc:desc||'',site:'',next:'',nextDate:'',notes:[{who:owner,when:'',text:note}],ads:{owner,status,launch,payDue}}));
-  return {items,seq:n};
+  return {items,seq:200};
 }
 let S; try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
 if(!S||!S.items) S=seed();
 const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}};
+const pref=(k,v)=>{try{v===undefined?0:localStorage.setItem(KEY+'-'+k,v);return localStorage.getItem(KEY+'-'+k)}catch(e){return null}};
 
-let tab='ads', filter='all', openId=null, editing=false, confirmDel=false;
-try{tab=localStorage.getItem(KEY+'-tab')||'ads'}catch(e){}
-const me=()=>document.getElementById('me').value;
+let tab=pref('tab')||'today', filter='all', scope=null, openId=null, editing=false, ask=null, lastRow=null;
+const $=id=>document.getElementById(id);
+const me=()=>$('me').value;
 const isAdmin=()=>ADMINS.includes(me());
 const canAds=()=>isAdmin()||me()==='Адина';
-const q=()=>document.getElementById('q').value.trim().toLowerCase();
+const q=()=>{const el=$('q');return el?el.value.trim().toLowerCase():''};
 const match=i=>!q()||(i.co+' '+i.client+' '+i.desc).toLowerCase().includes(q());
 const devOf=k=>DEV.find(d=>d.k===k);
 const adOf=k=>ADS.find(d=>d.k===k);
-const tag=(t,c)=>`<span class="tag t-${c}">${esc(t)}</span>`;
+const inWork=i=>i.stage!=null&&i.stage>=1&&i.stage<=5;
+const owner=i=>i.ads?i.ads.owner:'Дэн';
+const tag=(t,c)=>`<span class="tag ${c}">${esc(t)}</span>`;
 
+/* автоматика */
 function phase(a){
   const d=days(a.launch);
   if(d==null||d<0) return '';
   return d<28?'Оптимизация, '+(Math.floor(d/7)+1)+'-я неделя':'Продление, '+(Math.floor((d-28)/30)+1)+'-й месяц';
 }
-const payLate=a=>{const d=parse(a.payDue);return d&&d<today};
-const stepLate=i=>{const d=parse(i.nextDate);return d&&d<today};
+const payLate=a=>{const d=days(a.payDue);return d!=null&&d>0};
+const stepLate=i=>{const d=days(i.nextDate);return d!=null&&d>0};
+/* заметки из старых таблиц без даты считаем записанными в день переноса */
+const IMPORTED='14.10.2026';
+function lastNote(i){let m=null;i.notes.forEach(n=>{const d=parse(n.when||IMPORTED);if(d&&(!m||d>m))m=d});return m}
+function stale(i){const m=lastNote(i);return m?Math.round((today-m)/DAY):null}
+/* причины попасть во вкладку «Сегодня»: lvl 2 - срочно, 1 - не забыть, 0 - давно без вестей */
+function reasons(i){
+  const r=[];
+  if(i.stage===0) return r;
+  if(stepLate(i)) r.push({lvl:2,c:'red',t:'Шаг просрочен на '+dn(days(i.nextDate))});
+  if(i.ads&&payLate(i.ads)) r.push({lvl:2,c:'red',t:'Оплата просрочена на '+dn(days(i.ads.payDue))});
+  if(i.ads&&i.ads.status==='fire') r.push({lvl:2,c:'red',t:'Нужно внимание',k:'fire'});
+  if(i.ads&&i.ads.status==='new') r.push({lvl:1,c:'blue',t:'Новый, ещё не принят в работу'});
+  const nd=days(i.nextDate); if(nd!=null&&nd<=0&&-nd<=SOON_DAYS) r.push({lvl:1,c:'amber',t:'Шаг '+rel(i.nextDate)});
+  const pd=i.ads?days(i.ads.payDue):null; if(pd!=null&&pd<=0&&-pd<=PAY_SOON_DAYS) r.push({lvl:1,c:'amber',t:'Оплата '+rel(i.ads.payDue)});
+  if(inWork(i)&&days(i.start)>STUCK_DAYS) r.push({lvl:1,c:'amber',t:'Застрял в разработке: '+dn(days(i.start))});
+  const st=stale(i); if(st==null||st>STALE_DAYS) r.push({lvl:0,c:'grey',t:st==null?'Заметок с датой нет':'Без заметок '+dn(st)});
+  return r;
+}
+const level=i=>Math.max(-1,...reasons(i).map(r=>r.lvl));
+const inScope=i=>scope==='all'||owner(i)===me();
 
+/* отрисовка */
 function render(){
+  if(scope==null) scope=(me()==='Султан'||me()==='Помощница')?'all':'mine';
   document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected',String(b.dataset.t===tab)));
-  const inDev=S.items.filter(i=>i.stage!=null&&i.stage>=1&&i.stage<=5);
-  const inAds=S.items.filter(i=>i.ads);
-  document.getElementById('n-dev').textContent=inDev.length;
-  document.getElementById('n-ads').textContent=inAds.length;
-  document.getElementById('add').hidden=!(tab==='dev'&&isAdmin());
-  tab==='dev'?renderDev():renderAds();
+  const hot=S.items.filter(i=>inScope(i)&&level(i)>=1).length;
+  const nt=$('n-today'); nt.textContent=hot||''; nt.classList.toggle('hot',hot>0);
+  $('n-dev').textContent=S.items.filter(inWork).length;
+  $('n-ads').textContent=S.items.filter(i=>i.ads).length;
+  $('intro').hidden=!!pref('intro');
+  ({today:renderToday,dev:renderDev,ads:renderAds})[tab]();
   if(openId!=null) renderCard();
 }
+function roleLine(){
+  return {
+    'Дэн':'Ваши проекты: сайты в разработке и реклама, которую ведёте вы.',
+    'Адина':'Ваши проекты: клиенты, у которых вы ведёте рекламу.',
+    'Султан':'Все проекты студии.',
+    'Помощница':'Все проекты студии. Если что-то висит - напомните ответственному, он указан в строке.'
+  }[me()];
+}
+function renderToday(){
+  const all=S.items.filter(i=>inScope(i)).map(i=>({i,r:reasons(i),lvl:level(i)})).filter(x=>x.lvl>=0);
+  const g2=all.filter(x=>x.lvl===2), g1=all.filter(x=>x.lvl===1), g0=all.filter(x=>x.lvl===0);
+  const showOwner=scope==='all';
+  const grp=(x,extra)=>rowHtml(x.i,{reasons:x.r.filter(r=>r.lvl>0),owner:showOwner,...extra});
+  const canScope=me()==='Дэн'||me()==='Адина';
+  let h=`<p class="lead"><b>${esc(today.toLocaleDateString('ru-RU',{weekday:'long',day:'numeric',month:'long'}))}.</b> ${esc(roleLine())}</p>`;
+  if(canScope) h+=`<div class="pills" role="group" aria-label="Чьи проекты показывать"><button class="pill" data-scope="mine" aria-pressed="${scope==='mine'}">Мои</button><button class="pill" data-scope="all" aria-pressed="${scope==='all'}">Все проекты</button></div>`;
+  if(!g2.length&&!g1.length) h+=`<div class="calm"><b>Сегодня ничего не горит</b><span>Просроченных шагов, оплат и новых проектов нет. Ниже - те, о ком давно нет вестей.</span></div>`;
+  if(g2.length) h+=`<section class="group g2"><h2>Срочно<span class="n">${g2.length}</span></h2><p>Просроченные шаги и оплаты, проекты со статусом «Нужно внимание».</p><div class="list">${g2.map(x=>grp(x)).join('')}</div></section>`;
+  if(g1.length) h+=`<section class="group g1"><h2>Не забыть<span class="n">${g1.length}</span></h2><p>Новые, ещё не принятые в работу; шаги и оплаты на ближайшие дни; разработка дольше ${STUCK_DAYS} дней.</p><div class="list">${g1.map(x=>grp(x)).join('')}</div></section>`;
+  if(g0.length) h+=`<details class="group g0"><summary><h2>Давно без вестей<span class="n">${g0.length}</span></h2></summary><p>Больше ${STALE_DAYS} дней без заметки. Стоит написать клиенту или хотя бы отметить, что всё в порядке.</p><div class="list">${g0.map(x=>rowHtml(x.i,{reasons:x.r,owner:showOwner})).join('')}</div></details>`;
+  $('view').innerHTML=h;
+}
 function renderDev(){
-  document.getElementById('lead').textContent='Сайты в работе. Когда этап «Передано в рекламу», проект сам переходит во вкладку «Реклама».';
   const all=S.items.filter(i=>i.stage!=null);
   const opts=[{k:'all',t:'Все в работе',c:''},...DEV.map(d=>({k:d.k,t:d.t,c:d.c}))];
-  const cnt=k=>k==='all'?all.filter(i=>i.stage>=1&&i.stage<=5).length:all.filter(i=>i.stage===k).length;
+  const cnt=k=>k==='all'?all.filter(inWork).length:all.filter(i=>i.stage===k).length;
   if(filter!=='all'&&!DEV.some(d=>d.k===filter)) filter='all';
-  pills(opts,cnt);
-  let list=all.filter(i=>filter==='all'?i.stage>=1&&i.stage<=5:i.stage===filter).filter(match);
-  list.sort((a,b)=>(parse(a.start)||0)-(parse(b.start)||0));
-  rows(list,i=>{const d=devOf(i.stage),n=days(i.start);
-    return {tag:tag(d.t,d.c),small:i.stage>=1&&i.stage<=5&&n!=null?`в работе ${n} дн.`:(i.ads?'ведёт '+i.ads.owner:'')}});
+  let list=all.filter(i=>filter==='all'?inWork(i):i.stage===filter).filter(match);
+  list.sort((a,b)=>b.stage-a.stage||(parse(a.start)||0)-(parse(b.start)||0));
+  let h=`<p class="lead">Сайты в работе. Проект идёт по этапам слева направо; после этапа <b>«Передано в рекламу»</b> он сам переходит во вкладку «Реклама» к Адине.</p>
+    <div class="bar"><input id="q" class="inp" type="search" placeholder="Найти компанию или клиента" aria-label="Поиск" value="${esc(q())}">${isAdmin()?'<button id="add" class="btn" type="button">+ Новый проект</button>':''}</div>
+    ${pills(opts,cnt)}
+    <details class="legend"><summary>Что значит каждый этап</summary><dl>${DEV.map(d=>`<dt><span class="dot" style="--c:var(--${d.c})"></span>${esc(d.t)}</dt><dd>${esc(d.d)}</dd>`).join('')}
+    <div class="arrow">Этап меняют ${WHO_EDIT}. Сдвинуть назад с «Передано в рекламу» = убрать проект из вкладки «Реклама».</div></dl></details>
+    <div class="list">${list.length?list.map(i=>rowHtml(i,{dev:true})).join(''):emptyHtml(filter==='all'?'В работе сейчас ничего нет.':'На этом этапе проектов нет.')}</div>`;
+  $('view').innerHTML=h;
 }
 function renderAds(){
-  document.getElementById('lead').textContent='Клиенты с запущенной рекламой. Статус выбирает контекстолог, сверху то, что требует внимания.';
   const all=S.items.filter(i=>i.ads);
-  const opts=[{k:'all',t:'Все',c:''},...ADS,{k:'pay',t:'Просрочена оплата',c:'red'}];
-  const cnt=k=>k==='all'?all.length:k==='pay'?all.filter(i=>payLate(i.ads)).length:all.filter(i=>i.ads.status===k).length;
+  const opts=[{k:'all',t:'Все',c:''},...ADS,{k:'pay',t:'Оплата просрочена',c:'red'},{k:'mine',t:'Веду я',c:''}];
+  const cnt=k=>k==='all'?all.length:k==='pay'?all.filter(i=>payLate(i.ads)).length:k==='mine'?all.filter(i=>i.ads.owner===me()).length:all.filter(i=>i.ads.status===k).length;
   if(typeof filter==='number') filter='all';
-  pills(opts,cnt);
-  let list=all.filter(i=>filter==='all'||(filter==='pay'?payLate(i.ads):i.ads.status===filter)).filter(match);
+  let list=all.filter(i=>filter==='all'||(filter==='pay'?payLate(i.ads):filter==='mine'?i.ads.owner===me():i.ads.status===filter)).filter(match);
   const order=Object.fromEntries(ADS.map((a,n)=>[a.k,n]));
   list.sort((a,b)=>order[a.ads.status]-order[b.ads.status]||a.co.localeCompare(b.co));
-  rows(list,i=>{const a=adOf(i.ads.status);
-    let t=tag(a.t,a.c); if(payLate(i.ads)) t+=tag('Оплата просрочена','red'); if(stepLate(i)) t+=tag('Шаг просрочен','red');
-    return {tag:t,small:[phase(i.ads),'ведёт '+i.ads.owner].filter(Boolean).join(' · ')}});
+  let h=`<p class="lead">Клиенты, у которых идёт реклама. Сюда проекты попадают сами, когда в «Разработке» ставят этап «Передано в рекламу». Статус выбирает тот, кто ведёт рекламу, менять можно прямо в строке.</p>
+    <div class="bar"><input id="q" class="inp" type="search" placeholder="Найти компанию или клиента" aria-label="Поиск" value="${esc(q())}"></div>
+    ${pills(opts,cnt)}
+    <details class="legend"><summary>Что значит каждый статус</summary><dl>${ADS.map(d=>`<dt><span class="dot" style="--c:var(--${d.c})"></span>${esc(d.t)}</dt><dd>${esc(d.d)}</dd>`).join('')}
+    <div class="arrow">Статус и даты меняют ${WHO_ADS}. Неделя оптимизации и месяц продления считаются сами от даты запуска.</div></dl></details>
+    <div class="list">${list.length?list.map(i=>rowHtml(i,{})).join(''):emptyHtml('Таких проектов нет.')}</div>`;
+  $('view').innerHTML=h;
 }
+const emptyHtml=t=>`<div class="empty">${esc(t)}</div>`;
 function pills(opts,cnt){
-  document.getElementById('pills').innerHTML=opts.map(o=>{const n=cnt(o.k);
+  return `<div class="pills" role="group" aria-label="Фильтр">${opts.map(o=>{const n=cnt(o.k);
     if(!n&&o.k!=='all'&&o.k!==filter) return '';
-    return `<button class="pill" data-f="${o.k}" aria-pressed="${o.k===filter}">${o.c?`<span class="dot" style="background:var(--${o.c})"></span>`:''}${esc(o.t)} <b>${n}</b></button>`}).join('');
+    return `<button class="pill" type="button" data-f="${o.k}" aria-pressed="${o.k===filter}">${o.c?`<span class="dot" style="--c:var(--${o.c})"></span>`:''}${esc(o.t)} <b>${n}</b></button>`}).join('')}</div>`;
 }
-function rows(list,f){
-  document.getElementById('list').innerHTML=list.length?list.map(i=>{const r=f(i);
-    return `<button class="row" data-id="${i.id}"><span class="co">${esc(i.co)}</span>
-      <span class="side"><span>${r.tag}</span><span class="small">${esc(r.small)}</span></span>
-      <span class="sub">${esc([i.client,i.desc].filter(Boolean).join(' · ')||'Описание не заполнено')}</span></button>`}).join('')
-    :'<div class="empty">Здесь пока пусто</div>';
+function stepsHtml(i){
+  if(i.stage==null) return '';
+  const off=i.stage===0;
+  return `<span class="steps ${off?'off':''}" aria-hidden="true">${DEV.filter(d=>d.k>0).map(d=>`<i class="${!off&&d.k<=i.stage?'on':''} ${d.k===6?'last':''}"></i>`).join('')}</span>`;
+}
+/* строка списка; opts: dev (вкладка Разработка), reasons (чипы причин), owner (показать ответственного) */
+function rowHtml(i,o){
+  const all=o.reasons||reasons(i).filter(r=>r.lvl>0);
+  const lvl=Math.max(-1,...all.map(r=>r.lvl));
+  /* статус «Нужно внимание» и так виден в строке, чипом его не дублируем */
+  const rs=all.filter(r=>r.k!=='fire'||o.dev);
+  let meta=[], side='';
+  if(i.stage!=null&&(o.dev||!i.ads)){
+    const d=devOf(i.stage);
+    meta.push(stepsHtml(i)+(i.stage===0?'<span>Клиент ушёл</span>':`<span>${i.stage} из 6 · ${esc(d.t)}</span>`));
+    if(inWork(i)&&days(i.start)!=null) meta.push(`<span>в работе ${dn(days(i.start))}</span>`);
+    if(i.stage===6) meta.push('<span>реклама у '+esc(owner(i))+'</span>');
+    if(inWork(i)&&isAdmin()) side=`<span class="selw ${d.c}"><select data-stage-sel="${i.id}" aria-label="Этап проекта ${esc(i.co)}">${DEV.map(x=>`<option value="${x.k}" ${x.k===i.stage?'selected':''}>${esc(x.t)}</option>`).join('')}</select></span>`;
+    else side=tag(d.t,d.c);
+  }
+  if(i.ads&&!o.dev){
+    const a=adOf(i.ads.status), ph=phase(i.ads);
+    if(ph) meta.push(`<span>${esc(ph)}</span>`);
+    if(canAds()) side=`<span class="selw ${a.c}"><select data-status-sel="${i.id}" aria-label="Статус рекламы ${esc(i.co)}">${ADS.map(x=>`<option value="${x.k}" ${x.k===i.ads.status?'selected':''}>${esc(x.t)}</option>`).join('')}</select></span>`;
+    else side=tag(a.t,a.c);
+  }
+  if(o.owner) meta.push(`<span>ответственный: <b>${esc(owner(i))}</b></span>`);
+  if(i.next) meta.push(`<span>дальше: ${esc(i.next)}${i.nextDate?' ('+esc(rel(i.nextDate))+')':''}</span>`);
+  const quick=stepLate(i)&&canAds()?`<button class="btn ghost sm" type="button" data-done="${i.id}">Шаг сделан</button>`:'';
+  return `<article class="row ${lvl===2?'hot':lvl===1?'warm':''}">
+    <button class="row-main" type="button" data-open="${i.id}" aria-label="Открыть ${esc(i.co)}">
+      <span class="co">${esc(i.co)}${i.client?`<small>${esc(i.client)}</small>`:''}</span>
+      <span class="sub">${esc(i.desc||'Описание не заполнено')}</span>
+      ${meta.length?`<span class="meta">${meta.join('')}</span>`:''}
+      ${rs.length?`<span class="chips">${rs.map(r=>`<span class="chip ${r.c}">${esc(r.t)}</span>`).join('')}</span>`:''}
+    </button>
+    <div class="side">${side}${quick}</div></article>`;
 }
 
+/* карточка проекта */
 function renderCard(){
   const i=S.items.find(x=>x.id===openId); if(!i) return closeCard();
-  const a=i.ads, admin=isAdmin();
-  let h=`<div class="c-head"><div><h2>${esc(i.co)}</h2><div class="who">${esc(i.client||'Клиент не указан')}</div></div><button class="x" id="x" aria-label="Закрыть">×</button></div>`;
+  const a=i.ads, admin=isAdmin(), ads=canAds();
+  const kick=a?`Реклама · ведёт ${esc(a.owner)}`:i.stage===0?'Разработка · клиент ушёл':i.stage!=null?`Разработка · ${i.stage} из 6 · ${esc(devOf(i.stage).t)}`:'';
+  let h=`<div class="c-head"><div><div class="kicker">${kick}</div><h2>${esc(i.co)}</h2><div class="who">${i.client?'Клиент: '+esc(i.client):'Клиент не указан'}</div></div><button class="x" id="x" type="button" aria-label="Закрыть карточку">×</button></div>`;
+  if(ask){
+    h+=`<div class="confirm ${ask.soft?'soft':''}"><b>${esc(ask.title)}</b><span>${esc(ask.text)}</span><div class="btns"><button class="btn ${ask.soft?'':'danger'}" id="askYes" type="button">${esc(ask.yes)}</button><button class="btn ghost" id="askNo" type="button">Нет, оставить</button></div></div>`;
+  }
   if(editing){
     h+=`<div class="sec"><h3>Данные проекта</h3>
       <label class="field">Компания<input class="inp" id="e-co" value="${esc(i.co)}"></label>
-      <label class="field">Клиент<input class="inp" id="e-client" value="${esc(i.client)}"></label>
+      <label class="field">Клиент (имя)<input class="inp" id="e-client" value="${esc(i.client)}"></label>
       <label class="field">Краткое описание<textarea class="inp" id="e-desc" placeholder="Чем занимается, город">${esc(i.desc)}</textarea></label>
       <label class="field">Ссылка на сайт<input class="inp" id="e-site" type="url" placeholder="https://..." value="${esc(i.site)}"></label>
-      <div style="display:flex;gap:8px"><button class="btn" id="e-save">Сохранить</button><button class="btn ghost" id="e-cancel">Отмена</button></div></div>`;
-  }else{
-    h+=`<div class="sec"><h3>Описание</h3><p class="desc">${i.desc?esc(i.desc):'<span class="lock">Не заполнено</span>'}</p></div>
-      <div class="sec site"><h3>Сайт</h3>${i.site?`<a href="${esc(i.site)}" target="_blank" rel="noopener">${esc(i.site)}</a>`:'<span class="lock">Ссылки нет</span>'}</div>`;
+      <div class="btns"><button class="btn" id="e-save" type="button">Сохранить</button><button class="btn ghost" id="e-cancel" type="button">Отмена</button></div></div>`;
+    $('card').innerHTML=h; return;
   }
+  /* что горит по этому проекту */
+  const rs=reasons(i).filter(r=>r.lvl>0);
+  if(rs.length) h+=`<div class="alerts">${rs.map(r=>`<div class="alert ${r.c}">${esc(r.t)}</div>`).join('')}</div>`;
+  h+=`<div class="c-links">${i.site?`<a class="btn ghost sm" href="${esc(i.site)}" target="_blank" rel="noopener">Открыть сайт ↗</a>`:'<span class="lock">Ссылки на сайт пока нет</span>'}</div>`;
+  /* следующий шаг */
+  const nd=days(i.nextDate);
+  h+=`<div class="sec sec-next"><h3>Что сделать дальше</h3><div class="two">
+      <label class="field">Что<input class="inp" id="next" placeholder="Например: созвон по отчёту" value="${esc(i.next)}" ${!ads?'disabled':''}></label>
+      <label class="field">Когда<input class="inp" type="date" id="nextDate" value="${iso(i.nextDate)}" ${!ads?'disabled':''}></label></div>
+      ${i.next||i.nextDate?`<div class="btns" style="align-items:center">${nd!=null?`<span style="font-size:14px;color:${nd>0?'var(--red)':'var(--muted)'}">${nd>0?'Срок прошёл, ':'Срок: '}${esc(rel(i.nextDate))}</span>`:''}${ads?`<button class="btn sm" id="done" type="button">Шаг сделан</button>`:''}</div>`:''}
+      ${!ads?`<div class="lock">Шаг записывают ${WHO_ADS}. Вы можете оставить заметку ниже.</div>`:''}</div>`;
+  /* у проекта в рекламе статус важнее пути, поэтому блок «Реклама» идёт первым */
+  let pathH='',adsH='';
+  /* путь проекта */
   if(i.stage!=null){
-    h+=`<div class="sec"><h3>Этап разработки</h3><div class="choices">${DEV.map(d=>
-      `<button class="choice" data-stage="${d.k}" aria-pressed="${i.stage===d.k}" ${!admin?'disabled':''}><span class="dot" style="background:var(--${d.c})"></span>${esc(d.t)}</button>`).join('')}</div>
-      ${!admin?'<div class="lock">Этап меняют Дэн или Султан.</div>':''}</div>`;
+    const leaving=k=>k!==6&&i.ads;
+    pathH=`<div class="sec"><h3>Путь проекта</h3><ol class="path">${DEV.filter(d=>d.k>0).map((d,n)=>{
+      const st=i.stage===0?'':d.k<i.stage?'done':d.k===i.stage?'now':'';
+      return `<li class="${st} ${d.k===6?'last':''}"><button class="p-btn" type="button" data-stage="${d.k}" aria-pressed="${d.k===i.stage}" ${!admin?'disabled':''}><span class="p-dot">${st==='done'?'✓':n+1}</span><b>${esc(d.t)}</b><small>${esc(d.d)}</small>${st==='now'?'<em>Сейчас здесь</em>':''}</button></li>`}).join('')}</ol>
+      ${i.stage===6?`<div class="p-tail">Проект в рекламе у ${esc(gen(a?a.owner:'Адина'))}. Он виден во вкладке «Реклама».</div>`:`<div class="p-tail" style="background:var(--sunk);color:var(--muted)">После «Передано в рекламу» проект сам появится во вкладке «Реклама» у Адины со статусом «Новый».</div>`}
+      <div class="p-left"><button class="btn ghost sm" type="button" data-stage="0" aria-pressed="${i.stage===0}" ${!admin?'disabled':''}>${i.stage===0?'Клиент ушёл (выбрано)':'Клиент ушёл'}</button>${i.stage===0&&admin?'<span class="lock" style="color:var(--muted)">Чтобы вернуть, выберите этап выше</span>':''}</div>
+      ${!admin?`<div class="lock">Этап меняют ${WHO_EDIT}.</div>`:''}</div>`;
   }
+  /* реклама */
   if(a){
     const ph=phase(a);
-    h+=`<div class="sec"><h3>Реклама${ph?' · '+esc(ph):''}</h3><div class="choices">${ADS.map(s=>
-      `<button class="choice" data-st="${s.k}" aria-pressed="${a.status===s.k}" ${!canAds()?'disabled':''}><span class="dot" style="background:var(--${s.c})"></span>${esc(s.t)}</button>`).join('')}</div>
+    adsH=`<div class="sec"><h3>Реклама</h3><div class="choices">${ADS.map(x=>
+      `<button class="choice" type="button" data-st="${x.k}" aria-pressed="${a.status===x.k}" ${!ads?'disabled':''}><span class="dot" style="--c:var(--${x.c})"></span><span><b>${esc(x.t)}</b><small>${esc(x.d)}</small></span></button>`).join('')}</div>
       <div class="two">
-        <label>Запуск рекламы<input class="inp" type="date" id="launch" value="${iso(a.launch)}" ${!canAds()?'disabled':''}></label>
-        <label>Оплата до${payLate(a)?' <b style="color:var(--red)">просрочена</b>':''}<input class="inp" type="date" id="payDue" value="${iso(a.payDue)}" ${!canAds()?'disabled':''}></label>
+        <label class="field">Запуск рекламы<input class="inp" type="date" id="launch" value="${iso(a.launch)}" ${!ads?'disabled':''}></label>
+        <label class="field">Оплата до${payLate(a)?' <b style="color:var(--red)">(просрочена)</b>':''}<input class="inp" type="date" id="payDue" value="${iso(a.payDue)}" ${!ads?'disabled':''}></label>
       </div>
-      <label class="field">Ведёт<select class="inp" id="owner" ${!admin?'disabled':''}>${['Адина','Дэн'].map(o=>`<option ${o===a.owner?'selected':''}>${o}</option>`).join('')}</select></label></div>`;
+      <div class="phase">${ph?esc(ph):'Дата запуска не указана'}<small>${ph?'Считается само от даты запуска: 4 недели оптимизации, дальше продление по месяцам.':'Укажите запуск, и неделя оптимизации или месяц продления посчитаются сами.'}</small></div>
+      <label class="field">Ведёт рекламу<select class="inp" id="owner" ${!admin?'disabled':''}>${['Адина','Дэн'].map(o=>`<option ${o===a.owner?'selected':''}>${o}</option>`).join('')}</select></label>
+      ${!ads?`<div class="lock">Статус и даты меняют ${WHO_ADS}.</div>`:!admin?`<div class="lock">Кто ведёт, назначают ${WHO_EDIT}.</div>`:''}</div>`;
   }
-  h+=`<div class="sec"><h3>Что сделать дальше</h3><div class="two">
-      <input class="inp" id="next" placeholder="Например, созвон по отчёту" value="${esc(i.next)}">
-      <input class="inp" type="date" id="nextDate" value="${iso(i.nextDate)}" aria-label="Когда"></div>
-      ${stepLate(i)?'<div class="lock" style="color:var(--red)">Срок прошёл</div>':''}</div>
-    <div class="sec"><h3>Заметки</h3>
-      <textarea class="inp" id="note" placeholder="Что произошло: звонок, договорённость, правка"></textarea>
-      <div><button class="btn ghost" id="addNote">Добавить заметку</button></div>
-      <div class="notes">${i.notes.slice().reverse().map(n=>`<div class="note"><div class="when">${n.when?esc(n.when):'из старой таблицы'} · ${esc(n.who)}</div>${esc(n.text)}</div>`).join('')||'<span class="lock">Заметок пока нет</span>'}</div></div>`;
-  if(admin&&!editing){
-    h+=confirmDel?`<div class="confirm"><b>Удалить «${esc(i.co)}» навсегда?</b><span>Вместе с заметками. Отменить будет нельзя.</span>
-        <div style="display:flex;gap:8px"><button class="btn danger" id="delYes">Да, удалить</button><button class="btn ghost" id="delNo">Нет</button></div></div>`
-      :`<div class="admin"><button class="btn ghost" id="edit">Изменить данные</button><button class="btn ghost" id="del" style="color:var(--red)">Удалить проект</button></div>`;
-  }
-  document.getElementById('card').innerHTML=h;
+  h+=a?adsH+pathH:pathH+adsH;
+  /* о проекте */
+  h+=`<div class="sec"><h3>О проекте</h3>
+    <p class="desc">${i.desc?esc(i.desc):'<span class="lock">Описание не заполнено</span>'}</p>
+    <dl class="kv">${i.site?`<dt>Сайт</dt><dd><a href="${esc(i.site)}" target="_blank" rel="noopener">${esc(i.site)}</a></dd>`:''}${i.start?`<dt>Начало</dt><dd>${esc(i.start)}${inWork(i)?' (в работе '+dn(days(i.start))+')':''}</dd>`:''}</dl>
+    ${admin?`<div class="btns"><button class="btn ghost sm" id="edit" type="button">Изменить данные</button></div>`:`<div class="lock">Название, описание и сайт меняют ${WHO_EDIT}.</div>`}</div>`;
+  /* заметки */
+  const st=stale(i);
+  h+=`<div class="sec"><h3>Заметки${st!=null?`<span class="auto">последняя ${esc(dn(st))} назад</span>`:''}</h3>
+      <div class="note-form"><textarea class="inp" id="note" placeholder="Что произошло: звонок, договорённость, правка"></textarea>
+      <div><button class="btn sm" id="addNote" type="button">Добавить заметку</button></div></div>
+      <div class="notes">${i.notes.slice().reverse().map(n=>`<div class="note ${n.sys?'sys':''}"><div class="when">${n.when?esc(n.when):'из старой таблицы'} · ${esc(n.who)}</div>${esc(n.text)}</div>`).join('')||'<span class="lock">Заметок пока нет</span>'}</div></div>`;
+  if(admin) h+=`<div class="admin"><button class="btn ghost sm" id="del" type="button" style="color:var(--red)">Удалить проект</button></div>`;
+  $('card').innerHTML=h;
 }
-function openCard(id){openId=id;editing=false;confirmDel=false;document.getElementById('scrim').hidden=false;document.getElementById('card').hidden=false;renderCard();document.getElementById('x').focus()}
-function closeCard(){openId=null;document.getElementById('scrim').hidden=true;document.getElementById('card').hidden=true}
+function openCard(id,fromEl){
+  openId=id;editing=false;ask=null;lastRow=fromEl||null;
+  $('scrim').hidden=false;$('card').hidden=false;document.body.classList.add('has-card');
+  renderCard();$('card').scrollTop=0;$('x').focus();
+}
+function closeCard(){
+  openId=null;ask=null;editing=false;
+  $('scrim').hidden=true;$('card').hidden=true;document.body.classList.remove('has-card');
+  const back=lastRow&&document.querySelector(`[data-open="${lastRow}"]`); if(back) back.focus();
+}
 const cur=()=>S.items.find(x=>x.id===openId);
-const log=(i,text)=>i.notes.push({who:me(),when:now(),text});
+const log=(i,text,sys)=>i.notes.push({who:me(),when:now(),text,sys:!!sys});
+let tt; function toast(msg){const t=$('toast');t.textContent=msg;t.hidden=false;clearTimeout(tt);tt=setTimeout(()=>t.hidden=true,6000)}
+
+/* смена этапа: сюда сходятся карточка и быстрый выбор в строке */
+function setStage(i,k){
+  if(k===i.stage) return;
+  i.stage=k; log(i,'Этап: '+devOf(k).t,true);
+  if(k===6&&!i.ads){i.ads={owner:'Адина',status:'new',launch:'',payDue:''};log(i,'Передано в рекламу, ведёт Адина',true);toast('«'+i.co+'» передан в рекламу: теперь он у Адины во вкладке «Реклама» со статусом «Новый»')}
+  else if(k!==6&&i.ads){i.ads=null;log(i,'Убрано из рекламы',true);toast('«'+i.co+'» убран из вкладки «Реклама» и вернулся в разработку')}
+  save();render();
+}
+function setStatus(i,k){
+  if(k===i.ads.status) return;
+  i.ads.status=k; log(i,'Статус рекламы: '+adOf(k).t,true); save();render();
+}
+function stepDone(i){
+  log(i,'Сделано: '+(i.next||'шаг')); i.next='';i.nextDate='';save();render();toast('Шаг отмечен сделанным и записан в заметки');
+}
 
 document.addEventListener('click',e=>{
   const t=e.target;
-  const row=t.closest('.row'); if(row){openCard(+row.dataset.id);return}
-  const tb=t.closest('.tab'); if(tb){tab=tb.dataset.t;filter='all';try{localStorage.setItem(KEY+'-tab',tab)}catch(e){}render();return}
+  const op=t.closest('[data-open]'); if(op){openCard(+op.dataset.open,+op.dataset.open);return}
+  const tb=t.closest('.tab'); if(tb){tab=tb.dataset.t;filter='all';pref('tab',tab);render();return}
   const p=t.closest('[data-f]'); if(p){const v=p.dataset.f;filter=/^\d+$/.test(v)?+v:v;render();return}
+  const sc=t.closest('[data-scope]'); if(sc){scope=sc.dataset.scope;render();return}
+  const dq=t.closest('[data-done]'); if(dq){const i=S.items.find(x=>x.id===+dq.dataset.done);if(i&&canAds())stepDone(i);return}
+  if(t.id==='introOk'){pref('intro','1');render();return}
   if(t.id==='scrim'||t.closest('#x')){closeCard();return}
-  if(t.id==='reset'){S=seed();save();closeCard();render();return}
+  if(t.id==='reset'){S=seed();save();closeCard();render();toast('Данные возвращены к исходным');return}
   if(t.id==='add'){
-    const id=++S.seq; S.items.push({id,co:'Новый проект',client:'',start:now(),stage:1,desc:'',site:'',next:'',nextDate:'',notes:[{who:me(),when:now(),text:'Проект создан'}],ads:null});
-    save();tab='dev';filter='all';render();openCard(id);editing=true;renderCard();return;
+    const id=++S.seq; S.items.push({id,co:'Новый проект',client:'',start:now(),stage:1,desc:'',site:'',next:'',nextDate:'',notes:[{who:me(),when:now(),text:'Проект создан',sys:true}],ads:null});
+    save();tab='dev';filter='all';render();openCard(id);editing=true;renderCard();$('e-co').focus();$('e-co').select();return;
   }
   const i=cur(); if(!i) return;
   const st=t.closest('[data-stage]');
   if(st&&!st.disabled){const k=+st.dataset.stage; if(k===i.stage) return;
-    i.stage=k; log(i,'Этап: '+devOf(k).t);
-    if(k===6&&!i.ads){i.ads={owner:'Адина',status:'new',launch:'',payDue:''};log(i,'Передано в рекламу, ведёт Адина')}
-    if(k!==6&&i.ads){i.ads=null;log(i,'Убрано из рекламы')}
-    save();render();return}
+    if(k!==6&&i.ads){ask={soft:true,title:'Вернуть «'+i.co+'» в разработку?',text:'Проект уйдёт из вкладки «Реклама», статус и даты рекламы сотрутся. Заметки останутся.',yes:'Да, вернуть',fn:()=>setStage(i,k)};renderCard();$('askYes').focus();return}
+    setStage(i,k);return}
   const sa=t.closest('[data-st]');
-  if(sa&&!sa.disabled){if(sa.dataset.st===i.ads.status) return; i.ads.status=sa.dataset.st; log(i,'Статус рекламы: '+adOf(i.ads.status).t); save();render();return}
-  if(t.id==='addNote'){const v=document.getElementById('note').value.trim(); if(!v) return; log(i,v); save();render();return}
-  if(t.id==='edit'){editing=true;renderCard();return}
+  if(sa&&!sa.disabled){setStatus(i,sa.dataset.st);return}
+  if(t.id==='done'){stepDone(i);return}
+  if(t.id==='addNote'){const v=$('note').value.trim(); if(!v) {$('note').focus();return} log(i,v); save();render();return}
+  if(t.id==='edit'){editing=true;renderCard();$('e-co').focus();return}
   if(t.id==='e-cancel'){editing=false;renderCard();return}
   if(t.id==='e-save'){
-    i.co=document.getElementById('e-co').value.trim()||i.co; i.client=document.getElementById('e-client').value.trim();
-    i.desc=document.getElementById('e-desc').value.trim(); let u=document.getElementById('e-site').value.trim();
+    i.co=$('e-co').value.trim()||i.co; i.client=$('e-client').value.trim();
+    i.desc=$('e-desc').value.trim(); let u=$('e-site').value.trim();
     if(u&&!/^https?:\/\//.test(u)) u='https://'+u; i.site=u; editing=false; save();render();return}
-  if(t.id==='del'){confirmDel=true;renderCard();return}
-  if(t.id==='delNo'){confirmDel=false;renderCard();return}
-  if(t.id==='delYes'){S.items=S.items.filter(x=>x!==i);save();closeCard();render();return}
+  if(t.id==='del'){ask={title:'Удалить «'+i.co+'» навсегда?',text:'Вместе с заметками. Отменить будет нельзя.',yes:'Да, удалить',fn:()=>{S.items=S.items.filter(x=>x!==i);save();closeCard();render();toast('Проект удалён')}};renderCard();$('askNo').focus();return}
+  if(t.id==='askYes'){const f=ask.fn;ask=null;f();return}
+  if(t.id==='askNo'){ask=null;renderCard();return}
 });
 document.addEventListener('change',e=>{
   const t=e.target;
-  if(t.id==='me'){editing=false;confirmDel=false;render();return}
+  if(t.id==='me'){editing=false;ask=null;scope=null;render();return}
+  if(t.dataset.statusSel){const i=S.items.find(x=>x.id===+t.dataset.statusSel);if(i&&i.ads&&canAds())setStatus(i,t.value);return}
+  if(t.dataset.stageSel){const i=S.items.find(x=>x.id===+t.dataset.stageSel);if(i&&isAdmin())setStage(i,+t.value);return}
   const i=cur(); if(!i) return;
   if(t.id==='launch'){i.ads.launch=deiso(t.value);save();render()}
   if(t.id==='payDue'){i.ads.payDue=deiso(t.value);save();render()}
-  if(t.id==='owner'){i.ads.owner=t.value;log(i,'Ведёт: '+t.value);save();render()}
-  if(t.id==='next'||t.id==='nextDate'){i.next=document.getElementById('next').value.trim();i.nextDate=deiso(document.getElementById('nextDate').value);save();render()}
+  if(t.id==='owner'){i.ads.owner=t.value;log(i,'Ведёт: '+t.value,true);save();render()}
+  if(t.id==='next'||t.id==='nextDate'){i.next=$('next').value.trim();i.nextDate=deiso($('nextDate').value);save();render()}
 });
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&openId!=null)closeCard()});
-document.getElementById('q').addEventListener('input',render);
+document.addEventListener('input',e=>{if(e.target.id==='q'){const v=e.target.value,pos=e.target.selectionStart;render();const el=$('q');if(el){el.focus();el.setSelectionRange(pos,pos)}}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'&&openId!=null){if(ask){ask=null;renderCard()}else closeCard()}});
 render();
 </script>
 </body>
